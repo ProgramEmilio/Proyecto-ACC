@@ -1,0 +1,87 @@
+.titulo{
+    background-color: #5492cc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    
+}
+/* Estilo para la tabla */
+.tabla {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b7c1ee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cont {
+    text-align: center;
+}
+
+.tabla th, .tabla td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.tabla th {
+    background-color: #5492cc;
+    color: white;
+    font-weight: bold;
+}
+
+.tabla td {
+    color: #000000;
+}
+
+.tabla tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla tbody tr:hover {
+    background-color: #ddd;
+}
+
+.tabla th, table.tabla td {
+    border-radius: 5px;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    table.tabla {
+        width: 100%;
+    }
+    table.tabla th, table.tabla td {
+        padding: 8px 10px;
+    }
+}
+
+a {
+    text-decoration: underline;
+    color: rgb(0, 0, 0);
+}
+
+.regresar {
+    background-color: #80b3e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px; 
+    margin-bottom: 10px; 
+    display: inline-block; 
+    margin-left: 20px;
+}
+/* Hover para el botón de regresar */
+.regresar:hover {
+    background-color: #417fb3;
+}

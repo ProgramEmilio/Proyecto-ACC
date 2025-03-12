@@ -20,7 +20,6 @@ VENDEDOR
 DISTRIBUIDOR
 ADMINISTRADOR
 */
-CREATE TABLE BITACORA ();
 
 CREATE TABLE Usuario (
 id_usuario INT NOT NULL PRIMARY KEY,
@@ -121,7 +120,8 @@ CONSTRAINT fk_id_producto_pedi FOREIGN KEY (id_producto_t) REFERENCES Producto_t
 -- DISTRIBUCIÓN
 
 create table Distribucion(
-id_pedido INT NOT NULL,
+id_distribucion INT NOT NULL PRIMARY KEY,
+id_pedido VARCHAR(15) NOT NULL,
 id_usuario INT NOT NULL,
 CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
 CONSTRAINT fk_id_usuario_dis FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)

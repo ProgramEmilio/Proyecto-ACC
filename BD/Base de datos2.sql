@@ -30,19 +30,19 @@ id_rol INT NOT NULL,
 CONSTRAINT fk_usuario_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
-CREATE TABLE Persona (
-id_Persona int,
+CREATE TABLE persona (
+id_Persona INT NOT NULL PRIMARY KEY,
 id_usuario INT NOT NULL,
-nom_Persona VARCHAR(50) NOT NULL,
-Apellido_paterno VARCHAR(20) NOT NULL,
+nom_persona VARCHAR(50) NOT NULL,
+apellido_paterno VARCHAR(20) NOT NULL,
 Apellido_mataterno VARCHAR(20) NOT NULL,
 RFC  VARCHAR(13) NOT NULL,
-CP VARCHAR(5) NOT NULL,
-calle VARCHAR(20) NOT NULL,
+CP VARCHAR(5),
+calle VARCHAR(20),
 num_int TINYINT,
-num_ext TINYINT NOT NULL,
-colonia VARCHAR(50) NOT NULL,
-ciudad VARCHAR(20) NOT NULL,
+num_ext TINYINT,
+colonia VARCHAR(50),
+ciudad VARCHAR(20),
 telefono VARCHAR(10) NOT NULL,
 CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );

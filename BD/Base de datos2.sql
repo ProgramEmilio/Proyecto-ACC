@@ -54,7 +54,7 @@ CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 
 create table articulos(
 id_articulo INT NOT NULL PRIMARY KEY,
-nombre_art VARCHAR(70) NOT NULL,
+nombre_articulo VARCHAR(70) NOT NULL,
 descripcion TEXT NOT NULL,
 categoria TEXT NOT NULL,
 precio NUMERIC(16,2),
@@ -93,8 +93,11 @@ CONSTRAINT fk_id_prov_art FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario
 -- PRODUCCIÓN
 
 -- PRODUCTO TERMINADO
-create table producto_terminado(
-id_producto_t INT NOT NULL PRIMARY KEY,
+
+
+create table producto(
+id_producto INT NOT NULL PRIMARY KEY,
+id_pedido VARCHAR(15) NOT NULL,
 descripcion TEXT NOT NULL,
 categoria TEXT NOT NULL,
 precio_unitario FLOAT NOT NULL,
@@ -108,11 +111,11 @@ CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente
 
 ALTER TABLE producto_terminado ADD nombre_prod VARCHAR(70) NOT NULL;
 
-create table producto_consumido(
-id_producto_c INT NOT NULL PRIMARY KEY,
+create table producto_consumibles(
+id_producto_consumibles INT NOT NULL PRIMARY KEY,
 descripcion TEXT NOT NULL,
 id_articulo INT NOT NULL,
-id_producto_t INT NOT NULL,
+id_producto INT NOT NULL,
 CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo),
 CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto_terminado(id_producto_t)
 );
@@ -120,19 +123,20 @@ CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto_term
 create table pedido(
 id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
 id_cliente INT NOT NULL,
-id_producto_t INT NOT NULL,
-estatus ENUM('Enviado', 'En Camino','Entregado') DEFAULT 'Enviado',
-fecha DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
-CONSTRAINT fk_id_producto_pedi FOREIGN KEY (id_producto_t) REFERENCES producto_terminado(id_producto_t)
+estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado') DEFAULT 'Generado',
+fecha_registro DATETIME NOT NULL,
+CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
 -- DISTRIBUCIÓN
 
-create table distribucion(
-id_distribucion INT NOT NULL PRIMARY KEY,
+create table pedido_bitacora(
+id_pedido_bitacora INT NOT NULL PRIMARY KEY,
 id_pedido VARCHAR(15) NOT NULL,
 id_usuario INT NOT NULL,
+estatus_pedido TEXT NOT NULL,
+descripcion TEXT NOT NULL,
+fecha_registro DATETIME NOT NULL,
 CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
 CONSTRAINT fk_id_usuario_dis FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );

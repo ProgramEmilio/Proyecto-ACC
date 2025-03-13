@@ -59,7 +59,7 @@ descripcion TEXT NOT NULL,
 categoria TEXT NOT NULL,
 precio NUMERIC(16,2),
 costo NUMERIC(16,2),
-existencias int not DEFAULT 0,
+existencias INT NOT NULL DEFAULT 0,
 fecha_registro DATETIME NOT NULL
 );
 
@@ -74,7 +74,8 @@ descripcion TEXT NOT NULL,
 total NUMERIC(16,2), -- sumatoria de todos los detalles
 fecha_registro DATETIME NOT NULL,
 estatus ENUM('generada', 'cotizada', 'comprado') DEFAULT 'generada' NOT NULL,
-CONSTRAINT fk_id_prov_art FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+CONSTRAINT fk_id_comprador_usuario FOREIGN KEY (id_comprador_usuario) REFERENCES Usuario(id_usuario),
+CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES Usuario(id_usuario)
 );
 
 create table solicitud_compra_detalle(
@@ -86,7 +87,8 @@ precio_unitario NUMERIC(16,2),
 subtotal NUMERIC(16,2), -- qutar posiblemente
 total NUMERIC(16,2), -- Cantidad por precio unitario
 fecha_registro DATETIME NOT NULL,
-CONSTRAINT fk_id_prov_art FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+CONSTRAINT fk_id_solicitud FOREIGN KEY (id_solicitud) REFERENCES solicitud_compra(id_solicitud),
+CONSTRAINT fk_id_solicitud_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo)
 );
 
 
@@ -106,18 +108,18 @@ cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
 id_cliente INT NOT NULL,
 fecha DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES Usuario(id_usuario)
 );
 
-ALTER TABLE producto_terminado ADD nombre_prod VARCHAR(70) NOT NULL;
+ALTER TABLE producto ADD nombre_producto VARCHAR(70) NOT NULL;
 
 create table producto_consumibles(
 id_producto_consumibles INT NOT NULL PRIMARY KEY,
 descripcion TEXT NOT NULL,
 id_articulo INT NOT NULL,
-id_producto INT NOT NULL,
+id_producto_t INT NOT NULL,
 CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo),
-CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto_terminado(id_producto_t)
+CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto(id_producto)
 );
 
 create table pedido(
@@ -125,7 +127,7 @@ id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
 id_cliente INT NOT NULL,
 estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado') DEFAULT 'Generado',
 fecha_registro DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES usuario(id_usuario)
 );
 
 -- DISTRIBUCIÓN
@@ -152,4 +154,4 @@ INSERT INTO roles VALUES
 (5,'Vendedor'),
 (6,'Producción'),
 (7,'Distribuidor'),
-(8,'Responsables de control de stock');
+(8,'Responsable stock');

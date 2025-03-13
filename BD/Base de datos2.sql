@@ -16,12 +16,12 @@ ADMINISTRADOR
 */
 
 -- COMPRA PRODUCCION DISTRIBUCION
-CREATE TABLE Roles (
+CREATE TABLE roles (
 id_rol INT NOT NULL PRIMARY KEY,
 roles VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE Usuario (
+CREATE TABLE usuario (
 id_usuario INT NOT NULL PRIMARY KEY,
 nombre_usuario VARCHAR(50) NOT NULL,
 correo TEXT NOT NULL,
@@ -31,13 +31,13 @@ CONSTRAINT fk_usuario_roles FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
 CREATE TABLE persona (
-id_Persona INT NOT NULL PRIMARY KEY,
+id_persona INT NOT NULL PRIMARY KEY,
 id_usuario INT NOT NULL,
 nom_persona VARCHAR(50) NOT NULL,
 apellido_paterno VARCHAR(20) NOT NULL,
-Apellido_mataterno VARCHAR(20) NOT NULL,
-RFC  VARCHAR(13) NOT NULL,
-CP VARCHAR(5),
+apellido_materno VARCHAR(20) NOT NULL,
+rfc  VARCHAR(13) NOT NULL,
+codigo_postal VARCHAR(5),
 calle VARCHAR(20),
 num_int TINYINT,
 num_ext TINYINT,
@@ -52,7 +52,7 @@ CONSTRAINT fk_usuario FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 -- decimal
 -- Insercion preedefinida
 
-create table Articulos(
+create table articulos(
 id_articulo INT NOT NULL PRIMARY KEY,
 nombre_art VARCHAR(70) NOT NULL,
 descripcion TEXT NOT NULL,
@@ -93,7 +93,7 @@ CONSTRAINT fk_id_prov_art FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario
 -- PRODUCCIÓN
 
 -- PRODUCTO TERMINADO
-create table Producto_terminado(
+create table producto_terminado(
 id_producto_t INT NOT NULL PRIMARY KEY,
 descripcion TEXT NOT NULL,
 categoria TEXT NOT NULL,
@@ -103,44 +103,44 @@ cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
 id_cliente INT NOT NULL,
 fecha DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
+CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 
-ALTER TABLE Producto_terminado ADD nombre_prod VARCHAR(70) NOT NULL;
+ALTER TABLE producto_terminado ADD nombre_prod VARCHAR(70) NOT NULL;
 
-create table Producto_consumido(
+create table producto_consumido(
 id_producto_c INT NOT NULL PRIMARY KEY,
 descripcion TEXT NOT NULL,
 id_articulo INT NOT NULL,
 id_producto_t INT NOT NULL,
-CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES Articulos(id_articulo),
-CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES Producto_terminado(id_producto_t)
+CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo),
+CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto_terminado(id_producto_t)
 );
 
-create table Pedido(
+create table pedido(
 id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
 id_cliente INT NOT NULL,
 id_producto_t INT NOT NULL,
 estatus ENUM('Enviado', 'En Camino','Entregado') DEFAULT 'Enviado',
 fecha DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
-CONSTRAINT fk_id_producto_pedi FOREIGN KEY (id_producto_t) REFERENCES Producto_terminado(id_producto_t)
+CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+CONSTRAINT fk_id_producto_pedi FOREIGN KEY (id_producto_t) REFERENCES producto_terminado(id_producto_t)
 );
 
 -- DISTRIBUCIÓN
 
-create table Distribucion(
+create table distribucion(
 id_distribucion INT NOT NULL PRIMARY KEY,
 id_pedido VARCHAR(15) NOT NULL,
 id_usuario INT NOT NULL,
-CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
-CONSTRAINT fk_id_usuario_dis FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
+CONSTRAINT fk_id_usuario_dis FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
 );
 
 
 -- ALTER TABLE Pedido ADD fecha_entrega DATETIME NOT NULL;
 
-INSERT INTO Roles VALUES
+INSERT INTO roles VALUES
 (1,'Administrador'),
 (2,'Cliente'),
 (3,'Proveedor'),

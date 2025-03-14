@@ -74,8 +74,8 @@ descripcion TEXT NOT NULL,
 total NUMERIC(16,2), -- sumatoria de todos los detalles
 fecha_registro DATETIME NOT NULL,
 estatus ENUM('generada', 'cotizada', 'comprado') DEFAULT 'generada' NOT NULL,
-CONSTRAINT fk_id_comprador_usuario FOREIGN KEY (id_comprador_usuario) REFERENCES usuario(id_usuario),
-CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES usuario(id_usuario)
+CONSTRAINT fk_id_comprador_usuario FOREIGN KEY (id_comprador_usuario) REFERENCES persona(id_persona),
+CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES persona(id_persona)
 );
 
 create table solicitud_compra_detalle(

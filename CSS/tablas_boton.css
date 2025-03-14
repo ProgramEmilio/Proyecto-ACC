@@ -14,30 +14,46 @@
 /* Estilo para la tabla */
 .tabla {
     border-collapse: collapse;
-    width: 80%;
+    width: 40%;
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
     background-color: #b7c1ee;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.tabla_inv {
+    border-collapse: collapse;
+    width: 40%; /* La tabla ocupará el 100% del ancho disponible */
+    margin: 20px auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b7c1ee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.8rem;
+}
+
 .cont {
     text-align: center;
 }
 
-.tabla th, .tabla td {
+.tabla_inv th, .tabla_inv td{
     border: 1px solid #ddd;
-    padding: 12px 15px;
+    padding: 10px 10px;
     text-align: left;
 }
 
-.tabla th {
+.tabla th, .tabla td{
+    border: 1px solid #ddd;
+    padding: 10px 10px;
+    text-align: left;
+}
+
+.tabla th, .tabla_inv th {
     background-color: #5492cc;
     color: white;
     font-weight: bold;
 }
 
-.tabla td {
+.tabla td, .tabla_inv td {
     color: #000000;
 }
 
@@ -55,10 +71,29 @@
 
 /* Ajuste responsivo */
 @media (max-width: 768px) {
-    table.tabla {
+    .tabla {
+        width: 70%; /* Ajuste para pantallas pequeñas */
+    }
+}
+
+.tabla_inv tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla_inv tbody tr:hover {
+    background-color: #ddd;
+}
+
+.tabla_inv th, table.tabla_inv td {
+    border-radius: 5px;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    table.tabla_inv {
         width: 100%;
     }
-    table.tabla th, table.tabla td {
+    table.tabla_inv th, table.tabla_inv td {
         padding: 8px 10px;
     }
 }

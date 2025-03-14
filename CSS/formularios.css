@@ -44,6 +44,8 @@
 /* Estilos para los campos de texto y áreas de entrada */
 .form_edi_usuario input[type="text"],
 .form_edi_usuario input[type="password"],
+.form_edi_usuario input[type="number"],
+.form_edi_usuario input[type="datetime-local"]
 .form_edi_usuario select {
     width: calc(100% - 20px); 
     padding: 15px;

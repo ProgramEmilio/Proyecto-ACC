@@ -10,16 +10,33 @@ if (isset($_GET['id_usuario'])) {
         die("Conexión fallida: " . mysqli_connect_error());
     }
 
-    // SQL para eliminar el usuario
-    $sql = "DELETE FROM Usuario WHERE id_usuario = '$id_usuario'";
+    // Iniciar una transacción
+    mysqli_begin_transaction($conn);
 
-    // Ejecutar la consulta de eliminación
-    if ($conn->query($sql) === TRUE) {
+    try {
+        // SQL para eliminar el usuario en la tabla Persona
+        $sql_persona = "DELETE FROM persona WHERE id_usuario = '$id_usuario'";
+        if ($conn->query($sql_persona) !== TRUE) {
+            throw new Exception("Error al eliminar el registro en la tabla Persona.");
+        }
+
+        // SQL para eliminar el usuario en la tabla Usuario
+        $sql_usuario = "DELETE FROM Usuario WHERE id_usuario = '$id_usuario'";
+        if ($conn->query($sql_usuario) !== TRUE) {
+            throw new Exception("Error al eliminar el registro en la tabla Usuario.");
+        }
+
+        // Si ambas consultas fueron exitosas, confirmar la transacción
+        mysqli_commit($conn);
+
         // Redirigir a la página de usuarios después de eliminar el usuario
         header("Location: ../Usuario.php");
         exit;
-    } else {
-        echo "Error al eliminar el usuario: " . $conn->error;
+
+    } catch (Exception $e) {
+        // Si ocurre un error, revertir la transacción
+        mysqli_rollBack($conn);
+        echo "Error al eliminar el usuario: " . $e->getMessage();
     }
 
     // Cerrar la conexión a la base de datos

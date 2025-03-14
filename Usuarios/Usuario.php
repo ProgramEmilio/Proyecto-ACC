@@ -8,16 +8,20 @@ if (!$conn) {
 
 // Consulta SQL para obtener la información de los usuarios
 $sql = "SELECT 
-        Usuario.id_usuario, 
-        Roles.roles AS Rol, 
-        Usuario.nom_usuario AS Nombre, 
-        Usuario.ap_pat AS Apellido_Paterno, 
-        Usuario.ap_mat AS Apellido_Materno, 
-        Usuario.correo AS Correo,
-        Usuario.contraseña AS Contraseña, 
-        Usuario.RFC AS RFC
-    FROM Usuario
-    JOIN Roles ON Usuario.id_rol = Roles.id_rol";
+        usuario.id_usuario,
+        usuario.id_rol AS Rol,
+        usuario.nombre_usuario AS Nombre_usuario, 
+        usuario.correo AS Correo,
+        usuario.contraseña AS Contraseña,
+        persona.id_persona, 
+        persona.nom_persona AS Nombre_persona,
+        persona.apellido_paterno  AS Apellido_Paterno, 
+        persona.apellido_materno  AS Apellido_Materno, 
+        persona.rfc AS RFC,
+        persona.telefono AS telefono
+    FROM usuario
+    JOIN persona ON usuario.id_usuario = persona.id_usuario
+    JOIN roles ON usuario.id_rol = roles.id_rol";
 
 $result = $conn->query($sql);
 
@@ -90,10 +94,12 @@ if (!$result) {
             <tr class='cont'>
                 <th scope='col'>ID</th>
                 <th scope='col'>Rol</th>
-                <th scope='col'>Nombre</th>
+                <th scope='col'>Nombre(s)</th>
                 <th scope='col'>Apellido Paterno</th>
                 <th scope='col'>Apellido Materno</th>
                 <th scope='col'>RFC</th>
+                <th scope='col'>Contacto</th>
+                <th scope='col'>Usuario</th>
                 <th scope='col'>Correo</th>
                 <th scope='col'>Contraseña</th>
                 <th scope='col'>Editar</th>
@@ -105,10 +111,12 @@ if (!$result) {
     <tr>
         <th scope='row'><?= htmlspecialchars($fila['id_usuario']) ?></th>
         <td><?= htmlspecialchars($fila['Rol']) ?></td>
-        <td><?= htmlspecialchars($fila['Nombre']) ?></td>
+        <td><?= htmlspecialchars($fila['Nombre_persona']) ?></td>
         <td><?= htmlspecialchars($fila['Apellido_Paterno']) ?></td>
         <td><?= htmlspecialchars($fila['Apellido_Materno']) ?></td>
         <td><?= htmlspecialchars($fila['RFC']) ?></td>
+        <td><?= htmlspecialchars($fila['telefono']) ?></td>
+        <td><?= htmlspecialchars($fila['Nombre_usuario']) ?></td>
         <td><?= htmlspecialchars($fila['Correo']) ?></td>
         <td><?= isset($fila['Contraseña']) ? substr($fila['Contraseña'], 0, 2) . '*****' : 'No disponible' ?></td>
         <td><a href='Editar/Modificar.php?id_usuario=<?= htmlspecialchars($fila['id_usuario']) ?>' class='editar'>Editar</a></td>

@@ -58,6 +58,7 @@ $conn->close();
     <link rel="stylesheet" href="../../CSS/tablas_boton.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/formularios.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/departamentos.css" type="text/css">
+    <title>Modificar </title>
 </head>
     <header class="cabecera_p">
         <div class="cabecera">
@@ -70,7 +71,7 @@ $conn->close();
                 <!-- Usuarios -->
                 <li><a href="../Usuario.php">Usuarios</a>
                     <ul class="submenu">
-                        <li><a href="Registro/Registro_Usuario.php">Alta</a></li>
+                        <li><a href="../Registro/Registro_Usuario.php">Alta</a></li>
                     </ul>
                 </li>
                 <!-- Proveedor -->
@@ -100,63 +101,71 @@ $conn->close();
     </div>
 </header>
     <body>
-    <h1 class="titulo">Registro de Usuario</h1>
-    <script>
-    // Función para generar un ID aleatorio
-    function generarIdAleatorio() {
-        // Generar un número aleatorio entre 1000 y 9999 para usuario
-        let idUsuario = Math.floor(Math.random() * 9000) + 1000;
-        document.getElementById('id_usuario').value = idUsuario;
+    <h1 class="titulo">Modificar Articulos</h1>
+    
+    <?php
+include('../../BD/ConexionBD.php');
 
-        // Generar otro número aleatorio entre 1000 y 9999 para persona
-        let idPersona = Math.floor(Math.random() * 9000) + 1000;
-        document.getElementById('id_persona').value = idPersona;
-    }
+// Asegúrate de que el parámetro 'id_articulo' esté disponible en la URL o en una variable POST.
+$id_articulo = $_GET['id_articulo']; // o $_POST['id_articulo'] dependiendo de cómo se pase el ID
 
-    // Ejecutar la función al cargar la página
-    window.onload = generarIdAleatorio;
-    </script>
+// Consulta para obtener los datos del artículo
+$sql = "SELECT 
+        id_articulo,
+        nombre_articulo,
+        descripcion,
+        categoria,
+        precio,
+        costo,
+        existencias,
+        fecha_registro
+        FROM articulos
+        WHERE id_articulo = '$id_articulo'";
 
-    <form class="form_reg_usuario" action="Registrar_U.php" method="POST">
-        <label for="id_usuario">ID de Usuario:</label>
-        <input type="text" id="id_usuario" name="id_usuario" readonly><br><br>
+$result = mysqli_query($conn, $sql);
 
-        <label for="nom_persona">Nombre(s):</label>
-        <input type="text" id="nom_persona" name="nom_persona" maxlength="50" required><br><br>
+if ($result) {
+    // Obtener los datos del artículo
+    $articulo = mysqli_fetch_assoc($result);
+} else {
+    echo "Error al obtener los datos del artículo: " . mysqli_error($conn);
+}
 
-        <label for="apellido_paterno">Apellido Paterno:</label>
-        <input type="text" id="apellido_paterno" name="apellido_paterno" maxlength="20" required><br><br>
+// Cerrar la conexión
+mysqli_close($conn);
+?>
 
-        <label for="apellido_materno">Apellido Materno:</label>
-        <input type="text" id="apellido_materno" name="apellido_materno" maxlength="20" required><br><br>
+<form class="form_edi_usuario" action="Editar_I.php" method="POST">
+    <label for="id_articulo">ID de Artículo:</label>
+    <input type="text" id="id_articulo" name="id_articulo" value="<?php echo $articulo['id_articulo']; ?>" readonly><br><br>
 
-        <label for="nombre_usuario">Nombre de Usuario:</label>
-        <input type="text" id="nombre_usuario" name="nombre_usuario" maxlength="50" required><br><br>
+    <label for="nombre_articulo">Nombre del Artículo:</label>
+    <input type="text" id="nombre_articulo" name="nombre_articulo" value="<?php echo $articulo['nombre_articulo']; ?>" maxlength="70" required><br><br>
+    
+    <label for="descripcion">Descripción:</label>
+    <input type="text" id="descripcion" name="descripcion" value="<?php echo $articulo['descripcion']; ?>" maxlength="50" required><br><br>
 
-        <label for="correo">Correo Electrónico:</label>
-        <input type="text" id="correo" name="correo" required><br><br>
+    <label for="categoria">Categoría:</label>
+    <input type="text" id="categoria" name="categoria" value="<?php echo $articulo['categoria']; ?>" maxlength="50" required><br><br>
 
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" maxlength="25" required><br><br>
+    <label for="precio">Precio:</label>
+    <input type="text" id="precio" name="precio" value="<?php echo $articulo['precio']; ?>" required><br><br>
 
-        <label for="rfc">RFC:</label>
-        <input type="text" id="rfc" name="rfc" maxlength="13"><br><br>
-        
-        <label for="telefono">Telefono:</label>
-        <input type="text" id="telefono" name="telefono" maxlength="13"><br><br>
+    <label for="costo">Costo:</label>
+    <input type="text" id="costo" name="costo" value="<?php echo $articulo['costo']; ?>" required><br><br>
 
-        <label for="id_rol">Rol:</label>
-        <select id="id_rol" name="id_rol" required>
-            <option value="">Seleccionar rol</option>
-            <?php echo $options; ?>
-        </select><br><br>
+    <label for="existencias">Existencias:</label>
+    <input type="number" id="existencias" name="existencias" value="<?php echo $articulo['existencias']; ?>" required><br><br>
 
-        <input type="submit" value="Registrar Usuario">
-        <input type="hidden" id="id_persona" name="id_persona">
-    </form>
+    <label for="fecha_registro">Fecha de Registro:</label>
+    <input type="datetime-local" id="fecha_registro" name="fecha_registro" value="<?php echo date('Y-m-d\TH:i', strtotime($articulo['fecha_registro'])); ?>" required><br><br>
 
-    <a href="../Usuario.php" class="regresar">Regresar</a>
+    <input type="submit" value="Editar Artículo">
+</form>
+
+<a href="../Articulos.php" class="regresar">Regresar</a>
 </body>
+
 </html>
 
     

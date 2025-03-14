@@ -1,0 +1,7 @@
+producto
+pedido
+producto_consumibles
+
+de manera manual agregar los productos
+boton producir
+se consumen articulos

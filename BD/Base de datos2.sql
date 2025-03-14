@@ -95,7 +95,13 @@ CONSTRAINT fk_id_solicitud_articulo FOREIGN KEY (id_articulo) REFERENCES articul
 -- PRODUCCIÓN
 
 -- PRODUCTO TERMINADO
-
+create table pedido(
+id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
+id_cliente INT NOT NULL,
+estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado') DEFAULT 'Generado',
+fecha_registro DATETIME NOT NULL,
+CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES usuario(id_usuario)
+);
 
 create table producto(
 id_producto INT NOT NULL PRIMARY KEY,
@@ -108,7 +114,8 @@ cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
 id_cliente INT NOT NULL,
 fecha DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES Usuario(id_usuario)
+CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES Usuario(id_usuario),
+CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
 
 ALTER TABLE producto ADD nombre_producto VARCHAR(70) NOT NULL;
@@ -122,13 +129,7 @@ CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_arti
 CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto(id_producto)
 );
 
-create table pedido(
-id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
-id_cliente INT NOT NULL,
-estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado') DEFAULT 'Generado',
-fecha_registro DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES usuario(id_usuario)
-);
+
 
 -- DISTRIBUCIÓN
 

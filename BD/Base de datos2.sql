@@ -68,8 +68,8 @@ fecha_registro DATETIME NOT NULL
 -- MATERIA PRIMA
 create table solicitud_compra(
 id_solicitud INT NOT NULL PRIMARY KEY,
-id_comprador_usuario int not null, -- referencia a la tabla usuario agregar constrain
-id_proveedor_usuario int not null, -- referencia a la tabla usuario
+id_comprador_usuario INT NOT NULL, -- referencia a la tabla usuario agregar constrain
+id_proveedor_usuario INT NOT NULL, -- referencia a la tabla usuario
 descripcion TEXT NOT NULL,
 total NUMERIC(16,2), -- sumatoria de todos los detalles
 fecha_registro DATETIME NOT NULL,
@@ -80,7 +80,7 @@ CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES
 
 create table solicitud_compra_detalle(
 id_solicitud_detalle INT NOT NULL PRIMARY KEY,
-id_solicitud int not null, -- referencia a la tabla solicitud_compra agregar constrain
+id_solicitud INT NOT NULL, -- referencia a la tabla solicitud_compra agregar constrain
 id_articulo INT NOT NULL,
 cantidad INT NOT NULL,
 precio_unitario NUMERIC(16,2),
@@ -100,7 +100,7 @@ id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
 id_cliente INT NOT NULL,
 estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado') DEFAULT 'Generado',
 fecha_registro DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES usuario(id_usuario)
+CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES persona(id_persona)
 );
 
 create table producto(
@@ -114,7 +114,7 @@ cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
 id_cliente INT NOT NULL,
 fecha DATETIME NOT NULL,
-CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES Usuario(id_usuario),
+CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES persona(id_persona),
 CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
 
@@ -141,7 +141,7 @@ estatus_pedido TEXT NOT NULL,
 descripcion TEXT NOT NULL,
 fecha_registro DATETIME NOT NULL,
 CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
-CONSTRAINT fk_id_usuario_dis FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+CONSTRAINT fk_id_persona_dis FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)
 );
 
 

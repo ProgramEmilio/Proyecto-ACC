@@ -15,31 +15,37 @@
         let idUsuario;
 
         function mostrarPaso2() {
-            const usuario = document.getElementById('usuario').value;
-            const correo = document.getElementById('correo').value;
-            const contrasena = document.getElementById('contraseña').value;
-            
-            if (usuario && correo && contrasena) {
-                fetch('registro_usuario.php', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: `usuario=${usuario}&correo=${correo}&contraseña=${contrasena}`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        idUsuario = data.id_usuario;
-                        document.getElementById('paso1').style.display = 'none';
-                        document.getElementById('paso2').style.display = 'block';
-                    } else {
-                        alert('Error al registrar usuario.');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            } else {
-                alert('Todos los campos son obligatorios.');
-            }
+    const usuario = document.getElementById('usuario').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const contrasena = document.getElementById('contraseña').value.trim();
+
+    if (!usuario || !correo || !contrasena) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    fetch('registro_usuario.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: `usuario=${encodeURIComponent(usuario)}&correo=${encodeURIComponent(correo)}&contraseña=${encodeURIComponent(contrasena)}`
+    })
+    .then(response => response.text()) 
+    .then(text => {
+        console.log("Respuesta del servidor:", text);
+        if (text !== "error") {
+            idUsuario = text;  // Guardar el ID del usuario
+            document.getElementById('paso1').style.display = 'none';
+            document.getElementById('paso2').style.display = 'block';
+        } else {
+            alert("Error al registrar usuario.");
         }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+        alert("Error en la solicitud.");
+    });
+}
+
 
         function registrarPersona(event) {
             event.preventDefault();

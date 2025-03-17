@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['id_usuario'] = $id_usuario;
                 $_SESSION['nombre_usuario'] = $nombre_usuario;
 
-                header("Location: dashboard.php");
+                header("Location: ../Home/inicio.php");
                 exit();
             } else {
                 echo "<script>

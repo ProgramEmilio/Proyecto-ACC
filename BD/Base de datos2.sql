@@ -74,8 +74,8 @@ descripcion TEXT NOT NULL,
 total NUMERIC(16,2), -- sumatoria de todos los detalles
 fecha_registro DATETIME NOT NULL,
 estatus ENUM('generada', 'cotizada', 'comprado') DEFAULT 'generada' NOT NULL,
-CONSTRAINT fk_id_comprador_usuario FOREIGN KEY (id_comprador_usuario) REFERENCES persona(id_persona),
-CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES persona(id_persona)
+CONSTRAINT fk_id_comprador_usuario FOREIGN KEY (id_comprador_usuario) REFERENCES usuario(id_usuario),
+CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES usuario(id_usuario)
 );
 
 create table solicitud_compra_detalle(
@@ -103,6 +103,9 @@ fecha_registro DATETIME NOT NULL,
 CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES persona(id_persona)
 );
 
+ALTER TABLE pedido ADD COLUMN id_distribuidor INT;
+ALTER TABLE pedido ADD CONSTRAINT fk_id_distribuidor_pedi FOREIGN KEY (id_distribuidor) REFERENCES persona(id_persona);
+
 create table producto(
 id_producto INT NOT NULL PRIMARY KEY,
 id_pedido VARCHAR(15) NOT NULL,
@@ -119,6 +122,7 @@ CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 );
 
 ALTER TABLE producto ADD nombre_producto VARCHAR(70) NOT NULL;
+ALTER TABLE producto ADD COLUMN id_productor INT;
 
 create table producto_consumibles(
 id_producto_consumibles INT NOT NULL PRIMARY KEY,
@@ -129,7 +133,7 @@ CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_arti
 CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto(id_producto)
 );
 
-
+ALTER TABLE producto_consumibles MODIFY id_producto_consumibles INT NOT NULL AUTO_INCREMENT;
 
 -- DISTRIBUCIÓN
 
@@ -138,7 +142,6 @@ id_pedido_bitacora INT NOT NULL PRIMARY KEY,
 id_pedido VARCHAR(15) NOT NULL,
 id_usuario INT NOT NULL,
 estatus_pedido TEXT NOT NULL,
-descripcion TEXT NOT NULL,
 fecha_registro DATETIME NOT NULL,
 CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
 CONSTRAINT fk_id_persona_dis FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)

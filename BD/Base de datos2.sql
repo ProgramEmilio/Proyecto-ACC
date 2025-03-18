@@ -183,20 +183,7 @@ INSERT INTO persona (id_persona, id_usuario, nom_persona, apellido_paterno, apel
 (8, 8, 'Elena', 'Morales', 'Rios', 'RFC890123456', '55667', 'Calle 8', 3, 14, 'Sur', 'Ciudad H', '6677889900');
 
 
-INSERT INTO pedido (id_pedido, id_cliente, estatus, fecha_registro, id_distribuidor) VALUES
-('PED001', 2, 'Generado', NOW(), 7),
-('PED002', 3, 'En preparacion', NOW(), 7),
-('PED003', 4, 'A enviar', NOW(), 7);
-
-INSERT INTO producto (id_pedido, nombre_producto, descripcion, categoria, precio_unitario, impuestos, cantidad, personalizacion, fecha, imagen) VALUES
-('PED001', 'Playera con logo','Playera con logo personalizada tela de algodon','Playera', 250, 50, 2, 'icono', NOW(),'playera2.png'),
-('PED002', 'Agenda ejecutiva', 'Agenda de cuero con nombre grabado', 'Agenda', 180, 36, 3, 'texto', NOW(), 'agenda1.png'),  
-('PED003', 'Termo metálico', 'Termo de acero inoxidable con diseño grabado', 'Termo', 300, 60, 2, 'imagen', NOW(), 'termo3.png');
-
-INSERT INTO articulos (id_articulo, nombre_articulo, descripcion, categoria, precio, costo, existencias, fecha_registro) VALUES
-(1, 'Caja de cartón', 'Caja de cartón reforzada para envíos', 'Embalaje', 50.00, 30.00, 100, NOW()),
-(2, 'Cinta adhesiva', 'Cinta adhesiva resistente', 'Embalaje', 20.00, 10.00, 200, NOW()),
-(3, 'Bolsa de burbujas', 'Bolsa protectora para productos frágiles', 'Embalaje', 15.00, 8.00, 300, NOW());
-
-
-
+INSERT INTO producto(nombre_producto, descripcion, categoria, precio_unitario, impuestos, cantidad, personalizacion, fecha, imagen) VALUES
+('Playera con logo','Playera con logo personalizada tela de algodon','Playera', 250, 50, 2, 'icono', NOW(),'playera2.png'),
+('Agenda ejecutiva', 'Agenda de cuero con nombre grabado', 'Agenda', 180, 36, 3, 'texto', NOW(), 'agenda1.png'),  
+('Termo metálico', 'Termo de acero inoxidable con diseño grabado', 'Termo', 300, 60, 2, 'imagen', NOW(), 'termo3.png');

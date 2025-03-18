@@ -4,6 +4,8 @@ include('../BD/ConexionBD.php');
 include('../Nav/header.php');
 // Recuperar datos del pedido
 $id_pedido = $_GET['id_pedido']; // ID del pedido pasado por la URL
+$id_producto = $_GET['id_producto']; 
+
 $query_pedido = "SELECT * FROM pedido WHERE id_pedido = '$id_pedido'";
 $result_pedido = mysqli_query($conn, $query_pedido);
 $pedido = mysqli_fetch_assoc($result_pedido);
@@ -95,7 +97,7 @@ if (isset($_POST['procesar'])) {
             // Insertar en la tabla producto_consumibles
             // Relacionar los artículos consumibles con el producto terminado
             $query_insertar_producto_consumible = "INSERT INTO producto_consumibles (id_articulo, id_producto_t) 
-                                                    VALUES ('$id_articulo', '$id_pedido')";
+                                                    VALUES ('$id_articulo', '$id_producto')";
             if (!mysqli_query($conn, $query_insertar_producto_consumible)) {
                 die('Error al insertar en producto_consumibles: ' . mysqli_error($conn));
             }

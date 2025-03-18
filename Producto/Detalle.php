@@ -64,15 +64,19 @@ $conn->close();
                 <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
 
                 <?php if (!empty($producto['personalizacion'])): ?>
-                    <label for="personalizacion">Personalización:</label>
-                    <input type="text" name="personalizacion" id="personalizacion" class="custom-select" placeholder="Escribe tu personalización">
-                <?php endif; ?>
+                <label for="personalizacion">Personalización:</label>
+                <select name="personalizacion" id="personalizacion" class="custom-select">
+                    <option value="icono" <?php echo ($producto['personalizacion'] == 'icono') ? 'selected' : ''; ?>>Icono</option>
+                    <option value="imagen" <?php echo ($producto['personalizacion'] == 'imagen') ? 'selected' : ''; ?>>Imagen</option>
+                    <option value="texto" <?php echo ($producto['personalizacion'] == 'texto') ? 'selected' : ''; ?>>Texto</option>
+                </select>
+            <?php endif; ?>
 
                 <label for="cantidad">Cantidad:</label>
                 <input type="number" name="cantidad" id="cantidad" class="custom-select" placeholder="Cantidad" required min="1">
 
                 <button type="submit" class="buy-button">Comprar</button>
-            </form>
+              </form>
             </div>
             
         </div>

@@ -14,23 +14,29 @@ $menus = [
         "Cliente" => "../Home/inicio.php",
         "Usuario" => "../Usuarios/Usuario.php",
         "Proveedor" => "../Compras/Cotizacion/Cotizar.php",
-        "Ventas" => "#",
+        "Ventas" => "../Venta/Detalle_venta.php",
         "Compras" => [
             "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
             "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php"
         ],
         "Inventario" => "../Inventario/Inventario.php",
         "Distribución" => "../Distribucion/Distribucion.php",
-        "Producción" => "../Produccion/pro.php"
+        "Producción" =>[
+           "Produccion" => "../Produccion/pro.php",
+           "Productor" => "../Produccion/Productor.php"
+        ] 
     ],
-    2 => ["Cliente"], // Cliente (Sin menú)
+    2 => ["Catalogo" => "../Home/inicio.php"],
     3 => ["Proveedor" => "../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
         "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
         "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php",
     ]],
-    5 => ["Ventas" => "#"],
-    6 => ["Producción" => "../Produccion/pro.php"], // Producción solo ve producción
+    5 => ["Ventas" => "../Venta/Detalle_venta.php"],
+    6 => ["Producción" => [
+          "Produccion" => "../Produccion/pro.php",
+           "Productor" => "../Produccion/Productor.php"
+    ]],
     7 => ["Distribución" => "../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
     8 => ["Inventario" => "#"] // Responsable stock solo ve inventario
 ];

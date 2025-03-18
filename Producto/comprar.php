@@ -2,39 +2,36 @@
 include('../BD/ConexionBD.php');
 session_start();
 
-if (!isset($_SESSION['id_cliente'])) {
-    echo "<p class='error'>Debes iniciar sesión para comprar.</p>";
-    exit();
-}
-
-$id_cliente = $_SESSION['id_cliente'];
-$id_producto = isset($_GET['id_producto']) ? intval($_GET['id_producto']) : 0;
+$id_usuario = $_SESSION['id_usuario'];
+$id_producto = isset($_POST['id_producto']) ? intval($_POST['id_producto']) : 0;
 $cantidad = isset($_POST['cantidad']) ? intval($_POST['cantidad']) : 1;
 $personalizacion = isset($_POST['personalizacion']) ? $_POST['personalizacion'] : null;
 
-// Validaciones básicas
+// Validaciones
 if ($id_producto <= 0 || $cantidad <= 0) {
     echo "<p class='error'>Datos inválidos.</p>";
     exit();
 }
 
-// Obtener los datos del producto
-$sql_producto = "SELECT nombre_producto, descripcion, precio_unitario, impuestos, imagen FROM producto WHERE id_producto = ?";
+// Obtener datos del producto
+$sql_producto = "SELECT descripcion, categoria, precio_unitario, impuestos FROM producto WHERE id_producto = ?";
 $stmt = $conn->prepare($sql_producto);
 $stmt->bind_param("i", $id_producto);
 $stmt->execute();
 $result = $stmt->get_result();
+
 if ($result->num_rows == 0) {
     echo "<p class='error'>Producto no encontrado.</p>";
     exit();
 }
+
 $producto = $result->fetch_assoc();
 $stmt->close();
 
-// Buscar un pedido activo del cliente
+// Buscar un pedido activo
 $sql_pedido = "SELECT id_pedido FROM pedido WHERE id_cliente = ? AND estatus = 'Generado'";
 $stmt = $conn->prepare($sql_pedido);
-$stmt->bind_param("i", $id_cliente);
+$stmt->bind_param("i", $id_usuario);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -42,24 +39,23 @@ if ($result->num_rows > 0) {
     $pedido = $result->fetch_assoc();
     $id_pedido = $pedido['id_pedido'];
 } else {
-    // Si no hay un pedido activo, crear uno nuevo
-    $id_pedido = uniqid('PED'); // Generar un ID único
+    // Crear nuevo pedido
+    $id_pedido = uniqid('PED');
     $fecha_registro = date('Y-m-d H:i:s');
 
     $sql_insert_pedido = "INSERT INTO pedido (id_pedido, id_cliente, estatus, fecha_registro) VALUES (?, ?, 'Generado', ?)";
     $stmt = $conn->prepare($sql_insert_pedido);
-    $stmt->bind_param("sis", $id_pedido, $id_cliente, $fecha_registro);
+    $stmt->bind_param("sis", $id_pedido, $id_usuario, $fecha_registro);
     $stmt->execute();
     $stmt->close();
 }
 
-// Insertar el producto en la tabla producto
+// Actualizar el producto con el id_pedido
 $fecha = date('Y-m-d H:i:s');
-$sql_insert_producto = "INSERT INTO producto (id_pedido, nombre_producto, descripcion, precio_unitario, impuestos, cantidad, personalizacion, id_cliente, fecha, imagen) 
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+$sql_update_producto = "UPDATE producto SET id_cliente = ?, id_pedido = ?, fecha = ? WHERE id_producto = ?";
 
-$stmt = $conn->prepare($sql_insert_producto);
-$stmt->bind_param("sssddiisss", $id_pedido, $producto['nombre_producto'], $producto['descripcion'], $producto['precio_unitario'], $producto['impuestos'], $cantidad, $personalizacion, $id_cliente, $fecha, $producto['imagen']);
+$stmt = $conn->prepare($sql_update_producto);
+$stmt->bind_param("issi", $id_usuario, $id_pedido, $fecha, $id_producto);
 $stmt->execute();
 $stmt->close();
 

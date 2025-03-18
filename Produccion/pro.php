@@ -70,7 +70,7 @@ include('../Nav/header.php');
                     <td>{$fila['nombre_cliente']} {$fila['ap_p']} {$fila['ap_m']}</td>
                     <td>{$fila['personalizacion']}</td>
                     <td><div class='estatus $estatus_class'>{$fila['estatus']}</div></td>
-                    <td><a href='detalle_pedido.php?id_pedido={$fila['id_pedido']}'>Configurar</a></td>
+                    <td><a href='detalle_pedido.php?id_pedido={$fila['id_pedido']}&id_producto={$fila['id_producto']}'>Configurar</a></td>
                 </tr>";
         }
         echo "</tbody></table>";
@@ -79,7 +79,6 @@ include('../Nav/header.php');
     }
     ?>
 
-    <a href="../Usuario.php" class="regresar">Regresar</a>
 
 </body>
 

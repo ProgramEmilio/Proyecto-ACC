@@ -159,3 +159,23 @@ INSERT INTO roles VALUES
 (6,'Producción'),
 (7,'Distribuidor'),
 (8,'Responsable stock');
+
+INSERT INTO usuario (id_usuario, nombre_usuario, correo, contraseña, id_rol) VALUES
+(1, 'admin', 'admin@ACC.com', '12', 1),
+(2, 'cliente1', 'cliente@ACC.com', '12', 2),
+(3, 'proveedor1', 'proveedor@ACC.com', '12', 3),
+(4, 'comprador1', 'comprador@ACC.com', '12', 4),
+(5, 'vendedor1', 'vendedor@ACC.com', '12', 5),
+(6, 'produccion1', 'produccion@ACC.com', '12', 6),
+(7, 'distribuidor1', 'distribuidor@ACC.com', '12', 7),
+(8, 'stock1', 'stock@ACC.com', '12', 8);
+
+INSERT INTO persona (id_persona, id_usuario, nom_persona, apellido_paterno, apellido_materno, rfc, codigo_postal, calle, num_int, num_ext, colonia, ciudad, telefono) VALUES
+(1, 1, 'Juan', 'Perez', 'Gomez', 'RFC123456789', '12345', 'Av. Principal', 10, 20, 'Centro', 'Ciudad A', '1234567890'),
+(2, 2, 'Maria', 'Lopez', 'Diaz', 'RFC234567890', '54321', 'Calle Secundaria', 5, 15, 'Norte', 'Ciudad B', '0987654321'),
+(3, 3, 'Carlos', 'Hernandez', 'Martinez', 'RFC345678901', '67890', 'Calle 3', 8, 30, 'Sur', 'Ciudad C', '1122334455'),
+(4, 4, 'Ana', 'Ramirez', 'Torres', 'RFC456789012', '45678', 'Calle 4', 2, 12, 'Este', 'Ciudad D', '2233445566'),
+(5, 5, 'Pedro', 'Sanchez', 'Mendoza', 'RFC567890123', '98765', 'Calle 5', 6, 25, 'Oeste', 'Ciudad E', '3344556677'),
+(6, 6, 'Luisa', 'Guzman', 'Flores', 'RFC678901234', '11223', 'Calle 6', 9, 18, 'Centro', 'Ciudad F', '4455667788'),
+(7, 7, 'Roberto', 'Castro', 'Vega', 'RFC789012345', '33445', 'Calle 7', 4, 22, 'Norte', 'Ciudad G', '5566778899'),
+(8, 8, 'Elena', 'Morales', 'Rios', 'RFC890123456', '55667', 'Calle 8', 3, 14, 'Sur', 'Ciudad H', '6677889900');

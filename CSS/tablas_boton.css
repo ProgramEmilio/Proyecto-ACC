@@ -14,7 +14,7 @@
 /* Estilo para la tabla */
 .tabla {
     border-collapse: collapse;
-    width: 40%;
+    width: 20%;
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
     background-color: #b7c1ee;
@@ -24,6 +24,16 @@
 .tabla_inv {
     border-collapse: collapse;
     width: 40%; /* La tabla ocupará el 100% del ancho disponible */
+    margin: 20px auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #b7c1ee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.8rem;
+}
+
+.tabla_ped {
+    border-collapse: collapse;
+    width: 100%; /* La tabla ocupará el 100% del ancho disponible */
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
     background-color: #b7c1ee;
@@ -41,19 +51,34 @@
     text-align: left;
 }
 
-.tabla th, .tabla td{
+
+.tabla_ped th, .tabla_ped td{
     border: 1px solid #ddd;
     padding: 10px 10px;
     text-align: left;
+    font-weight: bold;
 }
 
-.tabla th, .tabla_inv th {
+.tabla th{
+    border: 1px solid #ddd;
+    padding: 1px 1px;
+    text-align: center;
+}
+
+.tabla td{
+    border: 1px solid #ddd;
+    padding: 0.5px 0.5px;
+    text-align: left;
+}
+
+
+.tabla th, .tabla_inv th, .tabla_ped th {
     background-color: #5492cc;
     color: white;
     font-weight: bold;
 }
 
-.tabla td, .tabla_inv td {
+.tabla td, .tabla_inv td, .tabla_ped td {
     color: #000000;
 }
 
@@ -98,6 +123,30 @@
     }
 }
 
+
+.tabla_ped tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tabla_ped tbody tr:hover {
+    background-color: #ddd;
+}
+
+.tabla_ped th, table.tabla_ped td {
+    border-radius: 5px;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    table.tabla_ped {
+        width: 100%;
+    }
+    table.tabla_ped th, table.tabla_ped td {
+        padding: 8px 10px;
+    }
+}
+
+
 a {
     text-decoration: underline;
     color: rgb(0, 0, 0);
@@ -119,15 +168,4 @@ a {
 /* Hover para el botón de regresar */
 .regresar:hover {
     background-color: #417fb3;
-}
-
-.contenido {
-    color: #000;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #000;
-    padding: 5px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-    width: 100%;
 }

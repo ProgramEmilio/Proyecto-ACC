@@ -46,13 +46,13 @@
             let contenido = "";
             switch (producto) {
                 case 'playera':
-                    contenido = generarContenido("playera2.png", "Playera con logo", "Playera de algodón premium con logo estampado de alta calidad.", "$299 MXN");
+                    contenido = generarContenido("../Imagenes/playera2.png", "Playera con logo", "Playera de algodón premium con logo estampado de alta calidad.", "$299 MXN");
                     break;
                 case 'termo':
-                    contenido = generarContenido("termo3.png", "Termo YETI", "Termo de acero inoxidable con aislamiento térmico de hasta 12 horas.", "$499 MXN");
+                    contenido = generarContenido("../Imagenes/termo3.png", "Termo YETI", "Termo de acero inoxidable con aislamiento térmico de hasta 12 horas.", "$499 MXN");
                     break;
                 case 'agenda':
-                    contenido = generarContenido("agenda1.png", "Agenda 2025", "Agenda ejecutiva con cubierta de piel sintética y páginas de papel reciclado.", "$199 MXN");
+                    contenido = generarContenido("../Imagenes/agenda1.png", "Agenda 2025", "Agenda ejecutiva con cubierta de piel sintética y páginas de papel reciclado.", "$199 MXN");
                     break;
                 default:
                     contenido = `<p>Producto no encontrado</p>`;

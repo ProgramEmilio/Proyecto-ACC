@@ -17,7 +17,7 @@
     <div class="login-container">
         <div class="login-box">
             <div class="logo">
-                <img src="acc_logo.png" alt="Logo">
+                <img src="../Imagenes/acc_logo.png" alt="Logo">
             </div>
             <h2>Crear Cuenta</h2>
             <form>

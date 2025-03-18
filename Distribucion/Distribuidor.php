@@ -1,17 +1,11 @@
 <?php
 include('../BD/ConexionBD.php');
 session_start();
-if (isset($_POST['cerrar_sesion'])) {
-    session_destroy(); // Destruye la sesión
-    header("Location: ../Login/login.php"); // Redirige a la página de inicio de sesión
-    exit();
-}
 // Verificar conexión a la base de datos
 if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 $id_distribuidor_usuario = $_SESSION['id_usuario'];
-$rol_usuario = $_SESSION['id_rol'];
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +21,6 @@ $rol_usuario = $_SESSION['id_rol'];
     <link rel="stylesheet" href="../CSS/formularios.css" type="text/css">
     <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../CSS/eliminar.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
-
     <style>
         .estatus {
             font-weight: bold;
@@ -79,66 +71,24 @@ $rol_usuario = $_SESSION['id_rol'];
 <header class="cabecera_p">
     <div class="cabecera">
         <h1 class="nom_sis">Aplica Central Creativa</h1>
-        <a href="../Inicio/inicio.php"><img src="../Imagenes/acc_logo.png" class="img-logo" alt="Logo"></a>
-        <div class="logout-container">
-        <form method="POST">
-            <button type="submit" name="cerrar_sesion" class="btn_logout">Cerrar Sesión</button>
-        </form>
-    </div>
+        <a href="../Menu.php"><img src="../Imagenes/acc_logo.png" class="img-logo" alt="Logo"></a>
+        <a href="#"><img src="../Imagenes/avatar.png" class="img-avatar" alt="Avatar"></a>
     </div>
     <div class="header">
-    <ul class="nav">
-    <?php if ($rol_usuario == '1') { // ADMINISTRADOR ?>
-        <li><a href="../Home/inicio.php">Cliente</a></li>
-        <li><a href="../Usuarios/Usuario.php">Usuario</a>
-            <ul class="submenu">
-                <li><a href="../Registro/Registro_Usuario.php">Alta</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Ventas</a></li>
-        <li><a href="../Compras/Cotizacion/Cotizar.php">Proveedor</a></li>
-        <li><a href="#">Compras</a>
-            <ul class="submenu">
-                <li><a href="../Compras/Solicitar/Solicitar_Compra.php">Solicitar</a></li>
-                <li><a href="../Compras/Aprobar/Aprobar_Compra.php">Aprobar</a></li>
-            </ul>
-        </li>
-        <li><a href="../Inventario/Inventario.php">Inventario</a></li>
-        <li><a href="../Produccion/pro.php">Producción</a></li>
-        <li><a href="../Distribucion/Distribucion.php">Distribución</a></li>
-
-    <?php } else { // PARA OTROS ROLES ?>
-        <?php if ($rol_usuario == '5') { ?>
-            <li><a href="#">Ventas</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '3') { ?>
-            <li><a href="../Compras/Cotizacion/Cotizar.php">Proveedor</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '4') { ?>
-            <li><a href="#">Compras</a>
+        <ul class="nav">
+            <li><a href="../Usuario.php">Usuarios</a>
                 <ul class="submenu">
-                    <li><a href="../Compras/Solicitar/Solicitar_Compra.php">Solicitar</a></li>
-                    <li><a href="../Compras/Aprobar/Aprobar_Compra.php">Aprobar</a></li>
+                    <li><a href="../Registro/Registro_Usuario.php">Alta</a></li>
                 </ul>
             </li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '8') { ?>
-            <li><a href="../Inventario/Inventario.php">Inventario</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '6') { ?>
-            <li><a href="../Produccion/pro.php">Producción</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '7') { ?>
-            <li><a href="../Distribucion/Distribucion.php">Distribución</a></li>
-        <?php } ?>
-    <?php } ?>
-</ul>
-</div>
+            <li><a href="#">Proveedor</a></li>
+            <li><a href="#">Ventas</a></li>
+            <li><a href="#">Compras</a></li>
+            <li><a href="#">Inventario</a></li>
+            <li><a href="#">Distribución</a></li>
+            <li><a href="#">Producción</a></li>
+        </ul>
+    </div>
 </header>
 
 <body>
@@ -223,7 +173,9 @@ $rol_usuario = $_SESSION['id_rol'];
 
 </body>
 
-<?php
-include('../Nav/footer.php');
-?>
+<footer class="pie-pagina">
+    <div class="grupo-2">
+        <small>&copy; 2025 <b>Aplica Central Creativa</b> - Todos los Derechos Reservados.</small>
+    </div>
+</footer>
 </html>

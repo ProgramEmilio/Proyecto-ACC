@@ -1,7 +1,7 @@
 <?php
 include('../../BD/ConexionBD.php');
-session_start();
 
+include('../../Nav/header2.php');
 if (!isset($_SESSION['id_usuario'])) {
     die("Error: No hay un usuario en sesión.");
 }
@@ -92,4 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['aprobar'])) {
         </tbody>
     </table>
 </body>
+<?php
+include('../../Nav/footer.php');
+?>
 </html>

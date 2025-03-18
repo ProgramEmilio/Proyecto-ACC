@@ -1,7 +1,7 @@
 <?php
 include('../../BD/ConexionBD.php');
 session_start();
-
+include('../../Nav/header2.php');
 if (!isset($_SESSION['id_usuario'])) {
     die("Error: No hay un usuario en sesión.");
 }
@@ -72,60 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cotizar'])) {
     echo "<script>alert('Cotización realizada correctamente.'); window.location.href='Cotizar.php';</script>";
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
-    <link rel="stylesheet" href="../../CSS/menu.css" type="text/css">
-    <link rel="stylesheet" href="../../CSS/cabecera.css" type="text/css">
-    <link rel="stylesheet" href="../../CSS/pie_pagina.css" type="text/css">
-    <link rel="stylesheet" href="../../CSS/tablas_boton.css" type="text/css">
-    <link rel="stylesheet" href="../../CSS/formularios.css" type="text/css">
-    <link rel="stylesheet" href="../../CSS/departamentos.css" type="text/css">
-</head>
-<header class="cabecera_p">
-        <div class="cabecera">
-            <h1 class="nom_sis">Aplica Central Creativa</h1>
-            <a href="../../Menu.php"><img src="../../Imagenes/acc_logo.png" class="img-logo" alt="Logo"></a>
-            <a href="#"><img src="../../Imagenes/avatar.png" class="img-avatar" alt="Avatar"></a>
-        </div>
-        <div class="header">
-        <ul class="nav">
-                <!-- Usuarios -->
-                <li><a href="Usuario.php">Usuarios</a>
-                    <ul class="submenu">
-                        <li><a href="Registro/Registro_Usuario.php">Alta</a></li>
-                    </ul>
-                </li>
-                <!-- Proveedor -->
-                <li><a href="#">Proveedor</a>
-                </li>
-
-                <!-- Ventas -->
-                <li><a href="#">Ventas</a>
-                </li>
-
-                <!-- Compras -->
-                <li><a href="#">Compras</a>
-                </li>
-
-              <!-- Inventario -->
-                <li><a href="#">Inventario</a>
-                </li>
-
-                <!-- Distribucion -->
-                <li><a href="#">Distribucion</a>
-                </li>
-
-             <!-- Produccion -->
-                <li><a href="#">Produccion</a>
-                </li>
-        </ul>
-    </div>
-</header>
 <body>
     <h1 class="titulo">Cotizar Solicitud</h1>
 
@@ -163,4 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cotizar'])) {
         </tbody>
     </table>
 </body>
+<?php
+include('../../Nav/footer.php');
+?>
 </html>

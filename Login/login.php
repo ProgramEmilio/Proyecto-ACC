@@ -17,24 +17,22 @@
     <div class="login-container">
         <div class="login-box">
             <div class="logo">
-                <img src="acc_logo.png" alt="Logo">
+                <img src="../Imagenes/acc_logo.png" alt="Logo">
             </div>
             <h2>Iniciar Sesión</h2>
             <form action="login_validar.php" method="POST">
-
-
-    <div class="input-group">
-        <input type="email" name="correo" id="email" required>
-        <label for="email">Correo Electrónico</label>
-    </div>
-    
-    <div class="input-group">
-        <input type="password" name="password" id="password" required>
-        <label for="password">Contraseña</label>
-    </div>
-    <button type="submit" class="login-button">Ingresar</button>
-    <p class="register-link">¿No tienes cuenta? <a href="registro.php">Regístrate</a></p>
-</form>
+                <div class="input-group">
+                    <input type="email" name="correo" id="email" required>
+                    <label for="email">Correo Electrónico</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">Contraseña</label>
+                </div>
+                <button type="submit" class="login-button">Ingresar</button>
+                <p class="register-link">¿No tienes cuenta? <a href="registro.php">Regístrate</a></p>
+            </form>
 
         </div>
     </div>

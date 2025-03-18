@@ -151,7 +151,7 @@ $conn->close();
     mysqli_close($conn);
 ?>
 
-<form class="form_edi_usuario" action="Editar_U.php" method="POST">
+<form class="form_reg_usuario" action="Editar_U.php" method="POST">
     <label for="id_usuario">ID de Usuario:</label>
     <input type="text" id="id_usuario" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>" readonly><br><br>
 
@@ -180,10 +180,10 @@ $conn->close();
     <input type="text" id="telefono" name="telefono" value="<?php echo $usuario['telefono']; ?>" maxlength="13"><br><br>
 
     <label for="id_rol">Rol:</label>
-    <select id="id_rol" name="id_rol" required>
-        <option value="">Seleccionar rol</option>
-        <?php echo $options; ?>
-    </select><br><br>
+        <select id="id_rol" name="id_rol" required>
+            <option value="">Seleccionar rol</option>
+            <?php echo $options; ?>
+        </select><br><br>
 
     <input type="submit" value="Editar Usuario">
 </form>

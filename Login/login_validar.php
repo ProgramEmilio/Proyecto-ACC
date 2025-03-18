@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = trim($_POST['correo']);
     $password = trim($_POST['password']);
 
-    // Consulta para verificar el usuario
-    $sql = "SELECT id_usuario, nombre_usuario, contraseña FROM usuario WHERE correo = ?";
+    // Consulta para verificar el usuario (incluyendo id_rol)
+    $sql = "SELECT id_usuario, nombre_usuario, contraseña, id_rol FROM usuario WHERE correo = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
@@ -22,29 +22,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->store_result(); // Almacenar resultado para verificar si hay datos
         
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id_usuario, $nombre_usuario, $hash_password);
+            $stmt->bind_result($id_usuario, $nombre_usuario, $hash_password, $id_rol);
             $stmt->fetch();
             
-            // DEBUG: Imprimir los valores recuperados en la consola
-            echo "<script>console.log('Usuario encontrado: ID = $id_usuario, Nombre = $nombre_usuario, Contraseña Hash = $hash_password');</script>";
+            // DEBUG: Ver valores en consola del navegador
+            echo "<script>console.log('Usuario: ID = $id_usuario, Nombre = $nombre_usuario, Rol = $id_rol');</script>";
 
-            // Verificar si la contraseña es hashada
+            // Verificar si la contraseña es correcta
             if (password_verify($password, $hash_password) || $password === $hash_password) {
-                // Guardar el ID del usuario en la sesión
+                // Guardar datos en sesión
                 $_SESSION['id_usuario'] = $id_usuario;
                 $_SESSION['nombre_usuario'] = $nombre_usuario;
+                $_SESSION['id_rol'] = $id_rol;
 
-                header("Location: ../Home/inicio.php");
+                // Redirigir según el rol del usuario
+                switch ($id_rol) {
+                    case 1: // Administrador
+                        header("Location: ../Inicio/inicio.php");
+                        break;
+                    case 2: // Cliente
+                        header("Location: ../Home/inicio.php");
+                        break;
+                    case 3: // Proveedor
+                        header("Location: ../Compras/Cotizacion/Cotizar.php");
+                        break;
+                    case 4: // Comprador
+                        header("Location: ../Compras/Aprobar/Aprobar_Compra.php");
+                        break;
+                    case 5: // Vendedor
+                        header("Location: ../Ventas/ventas.php");
+                        break;
+                    case 6: // Producción
+                        header("Location: ../Produccion/pro.php");
+                        break;
+                    case 7: // Distribuidor
+                        header("Location: ../Distribucion/Distribucion.php");
+                        break;
+                    case 8: // Responsable stock
+                        header("Location: ../Inventario/Inventario.php");
+                        break;
+                    default:
+                        header("Location: ../Inicio/inicio.php"); // Si el rol no existe, ir a una página por defecto
+                        break;
+                }
                 exit();
             } else {
                 echo "<script>
-                        alert('Contraseña incorrecta.\\nCorreo: $correo\\nContraseña ingresada: $password');
+                        alert('Contraseña incorrecta.');
                         window.location.href='login.php';
                       </script>";
             }
         } else {
             echo "<script>
-                    alert('No se encontró el usuario con el correo ingresado.\\nCorreo: $correo');
+                    alert('No se encontró el usuario con el correo ingresado.');
                     window.location.href='login.php';
                   </script>";
         }

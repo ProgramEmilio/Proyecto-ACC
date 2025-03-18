@@ -107,15 +107,15 @@ ALTER TABLE pedido ADD COLUMN id_distribuidor INT;
 ALTER TABLE pedido ADD CONSTRAINT fk_id_distribuidor_pedi FOREIGN KEY (id_distribuidor) REFERENCES persona(id_persona);
 
 create table producto(
-id_producto INT NOT NULL PRIMARY KEY,
-id_pedido VARCHAR(15) NOT NULL,
+id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+id_pedido VARCHAR(15),
 descripcion TEXT NOT NULL,
 categoria TEXT NOT NULL,
 precio_unitario FLOAT NOT NULL,
 impuestos FLOAT NOT NULL,
 cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
-id_cliente INT NOT NULL,
+id_cliente INT,
 fecha DATETIME NOT NULL,
 CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES persona(id_persona),
 CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
@@ -123,6 +123,7 @@ CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 
 ALTER TABLE producto ADD nombre_producto VARCHAR(70) NOT NULL;
 ALTER TABLE producto ADD COLUMN id_productor INT;
+ALTER TABLE producto ADD imagen VARCHAR(255) NOT NULL;
 
 create table producto_consumibles(
 id_producto_consumibles INT NOT NULL PRIMARY KEY,
@@ -160,6 +161,7 @@ INSERT INTO roles VALUES
 (7,'Distribuidor'),
 (8,'Responsable stock');
 
+
 INSERT INTO usuario (id_usuario, nombre_usuario, correo, contraseña, id_rol) VALUES
 (1, 'admin', 'admin@ACC.com', '12', 1),
 (2, 'cliente1', 'cliente@ACC.com', '12', 2),
@@ -179,3 +181,9 @@ INSERT INTO persona (id_persona, id_usuario, nom_persona, apellido_paterno, apel
 (6, 6, 'Luisa', 'Guzman', 'Flores', 'RFC678901234', '11223', 'Calle 6', 9, 18, 'Centro', 'Ciudad F', '4455667788'),
 (7, 7, 'Roberto', 'Castro', 'Vega', 'RFC789012345', '33445', 'Calle 7', 4, 22, 'Norte', 'Ciudad G', '5566778899'),
 (8, 8, 'Elena', 'Morales', 'Rios', 'RFC890123456', '55667', 'Calle 8', 3, 14, 'Sur', 'Ciudad H', '6677889900');
+
+
+INSERT INTO producto(nombre_producto, descripcion, categoria, precio_unitario, impuestos, cantidad, personalizacion, fecha, imagen) VALUES
+('Playera con logo','Playera con logo personalizada tela de algodon','Playera', 250, 50, 2, 'icono', NOW(),'playera2.png'),
+('Agenda ejecutiva', 'Agenda de cuero con nombre grabado', 'Agenda', 180, 36, 3, 'texto', NOW(), 'agenda1.png'),  
+('Termo metálico', 'Termo de acero inoxidable con diseño grabado', 'Termo', 300, 60, 2, 'imagen', NOW(), 'termo3.png');

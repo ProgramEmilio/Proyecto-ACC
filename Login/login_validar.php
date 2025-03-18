@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: ../Inventario/Inventario.php");
                         break;
                     default:
-                        header("Location: ../Inicio/inicio.php"); // Si el rol no existe, ir a una página por defecto
+                        header("Location: ../Home/inicio.php"); // Si el rol no existe, ir a una página por defecto
                         break;
                 }
                 exit();

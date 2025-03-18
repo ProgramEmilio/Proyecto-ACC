@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cotizar'])) {
 <body>
     <h1 class="titulo">Cotizar Solicitud</h1>
 
-    <table class='tabla'>
+    <table class='tabla_com'>
         <thead>
             <tr>
                 <th>ID Solicitud</th>

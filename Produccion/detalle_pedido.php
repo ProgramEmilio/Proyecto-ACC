@@ -1,7 +1,7 @@
 <?php
 // Conexion a la base de datos
 include('../BD/ConexionBD.php');
-
+include('../Nav/header.php');
 // Recuperar datos del pedido
 $id_pedido = $_GET['id_pedido']; // ID del pedido pasado por la URL
 $query_pedido = "SELECT * FROM pedido WHERE id_pedido = '$id_pedido'";
@@ -169,29 +169,6 @@ if (isset($_POST['procesar'])) {
         }
     </style>
 </head>
-    <header class="cabecera_p">
-        <div class="cabecera">
-            <h1 class="nom_sis">Aplica Central Creativa</h1>
-            <a href="../Menu.php"><img src="../Imagenes/acc_logo.png" class="img-logo" alt="Logo"></a>
-            <a href="#"><img src="../Imagenes/avatar.png" class="img-avatar" alt="Avatar"></a>
-        </div>
-        <div class="header">
-            <ul class="nav">
-                <li><a href="Usuario.php">Usuarios</a>
-                    <ul class="submenu">
-                        <li><a href="Registro/Registro_Usuario.php">Alta</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Proveedor</a></li>
-                <li><a href="#">Ventas</a></li>
-                <li><a href="#">Compras</a></li>
-                <li><a href="#">Inventario</a></li>
-                <li><a href="#">Distribución</a></li>
-                <li><a href="#">Producción</a></li>
-            </ul>
-        </div>
-    </header>
-
     
 <body>
     <h1 class="titulo">Producción</h1>

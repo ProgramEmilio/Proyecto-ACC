@@ -50,7 +50,8 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
     <link rel="stylesheet" href="../Home/inicio_usuario.css" type="text/css">
-
+    <link rel="stylesheet" href="../CSS/eliminar.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>

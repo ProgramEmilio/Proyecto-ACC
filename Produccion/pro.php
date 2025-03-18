@@ -16,7 +16,7 @@ include('../Nav/header.php');
     <?php
     // Consulta SQL mejorada para obtener productos y pedidos
     $sql = "SELECT pro.id_producto, pro.descripcion, pro.categoria, pro.precio_unitario, 
-                   pro.impuestos, pro.cantidad, pro.fecha, pro.personalizacion,
+                   pro.impuestos, pro.cantidad, pro.fecha, pro.personalizacion, pro.nombre_producto,
                    pedi.id_pedido, pedi.estatus, pedi.fecha_registro,
                    p.nom_persona AS nombre_cliente, p.apellido_paterno AS ap_p, p.apellido_materno AS ap_m
             FROM pedido pedi
@@ -31,7 +31,7 @@ include('../Nav/header.php');
                 <thead>
                     <tr>
                         <th>ID Pedido</th>
-                        <th>ID Producto</th>
+                        <th>Producto</th>
                         <th>Descripción Producto</th>
                         <th>Categoría</th>
                         <th>Precio Unitario</th>
@@ -60,7 +60,7 @@ include('../Nav/header.php');
 
             echo "<tr>
                     <td>{$fila['id_pedido']}</td>
-                    <td>{$fila['id_producto']}</td>
+                    <td>{$fila['nombre_producto']}</td>
                     <td>{$fila['descripcion']}</td>
                     <td>{$fila['categoria']}</td>
                     <td>{$fila['precio_unitario']}</td>

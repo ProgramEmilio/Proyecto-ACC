@@ -49,7 +49,7 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../../CSS/formularios.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/cabecera2.css" type="text/css">
-
+    
 </head>
 <body>
 <header class="cabecera_p">

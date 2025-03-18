@@ -1,6 +1,7 @@
 <?php
 include('../BD/ConexionBD.php');
-session_start();
+
+include('../Nav/header.php');
 if (isset($_POST['cerrar_sesion'])) {
     session_destroy(); // Destruye la sesión
     header("Location: ../Login/login.php"); // Redirige a la página de inicio de sesión
@@ -14,132 +15,6 @@ $id_distribuidor_usuario = $_SESSION['id_usuario'];
 $rol_usuario = $_SESSION['id_rol'];
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distribución</title>
-    <link rel="stylesheet" href="../CSS/menu.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/cabecera.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/pie_pagina.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/tablas_boton.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/formularios.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/eliminar.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
-
-    <style>
-        .estatus {
-            font-weight: bold;
-            padding: 5px 15px;
-            border-radius: 15px;
-            text-transform: capitalize;
-            color: #fff;
-            display: inline-block;
-            text-align: center;
-            margin-right: 10px;
-            width: auto;
-        }
-
-        .estatus-generado {
-            background-color: #9E9E9E; /* Gris */
-        }
-
-        .estatus-en-preparacion {
-            background-color: #FF9800; /* Naranja */
-        }
-
-        .estatus-a-enviar {
-            background-color: #FFEB3B; /* Amarillo */
-        }
-
-        .estatus-en-distribucion {
-            background-color: #4CAF50; /* Verde */
-        }
-
-        .estatus-en-camino {
-            background-color: #2196F3; /* Azul */
-        }
-
-        .estatus-entregado {
-            background-color: #F44336; /* Rojo */
-        }
-
-        /* Ajuste responsivo */
-        @media (max-width: 768px) {
-            .estatus {
-                font-size: 14px;
-                padding: 5px 10px;
-            }
-        }
-    </style>
-</head>
-
-<header class="cabecera_p">
-    <div class="cabecera">
-        <h1 class="nom_sis">Aplica Central Creativa</h1>
-        <a href="../Inicio/inicio.php"><img src="../Imagenes/acc_logo.png" class="img-logo" alt="Logo"></a>
-        <div class="logout-container">
-        <form method="POST">
-            <button type="submit" name="cerrar_sesion" class="btn_logout">Cerrar Sesión</button>
-        </form>
-    </div>
-    </div>
-    <div class="header">
-    <ul class="nav">
-    <?php if ($rol_usuario == '1') { // ADMINISTRADOR ?>
-        <li><a href="../Home/inicio.php">Cliente</a></li>
-        <li><a href="../Usuarios/Usuario.php">Usuario</a>
-            <ul class="submenu">
-                <li><a href="../Registro/Registro_Usuario.php">Alta</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Ventas</a></li>
-        <li><a href="../Compras/Cotizacion/Cotizar.php">Proveedor</a></li>
-        <li><a href="#">Compras</a>
-            <ul class="submenu">
-                <li><a href="../Compras/Solicitar/Solicitar_Compra.php">Solicitar</a></li>
-                <li><a href="../Compras/Aprobar/Aprobar_Compra.php">Aprobar</a></li>
-            </ul>
-        </li>
-        <li><a href="../Inventario/Inventario.php">Inventario</a></li>
-        <li><a href="../Produccion/pro.php">Producción</a></li>
-        <li><a href="../Distribucion/Distribucion.php">Distribución</a></li>
-
-    <?php } else { // PARA OTROS ROLES ?>
-        <?php if ($rol_usuario == '5') { ?>
-            <li><a href="#">Ventas</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '3') { ?>
-            <li><a href="../Compras/Cotizacion/Cotizar.php">Proveedor</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '4') { ?>
-            <li><a href="#">Compras</a>
-                <ul class="submenu">
-                    <li><a href="../Compras/Solicitar/Solicitar_Compra.php">Solicitar</a></li>
-                    <li><a href="../Compras/Aprobar/Aprobar_Compra.php">Aprobar</a></li>
-                </ul>
-            </li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '8') { ?>
-            <li><a href="../Inventario/Inventario.php">Inventario</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '6') { ?>
-            <li><a href="../Produccion/pro.php">Producción</a></li>
-        <?php } ?>
-
-        <?php if ($rol_usuario == '7') { ?>
-            <li><a href="../Distribucion/Distribucion.php">Distribución</a></li>
-        <?php } ?>
-    <?php } ?>
-</ul>
-</div>
-</header>
 
 <body>
     <h1 class="titulo">Distribución</h1>

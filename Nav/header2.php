@@ -32,7 +32,7 @@ $menus = [
     5 => ["Ventas" => "#"],
     6 => ["Producción" => "../../Produccion/pro.php"], // Producción solo ve producción
     7 => ["Distribución" => "../../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
-    8 => ["../../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
+    8 => ["Inventario" => "../../Inventario/Inventario.php"] // Responsable stock solo ve inventario
 ];
 include('CerrarSesion.php');
 ?>

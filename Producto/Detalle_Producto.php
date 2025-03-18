@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detalles del Producto</title>
-
-    <!-- Fuente Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="detalle_producto.css">
 </head>
@@ -17,7 +13,7 @@
     <div class="hm-wrapper">
         <!-- Header -->
         
-        <?php include 'nav.php'; ?>
+        <?php include '../Nav/header.php'; ?>
 
         <!-- Contenedor de los detalles del producto -->
         <div class="product-details-container">
@@ -25,16 +21,6 @@
                 <!-- Contenido dinámico del producto -->
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <div class="foo-copy">
-                <div class="container">
-                    <p>ACC 2025 © Todos los derechos reservados</p>
-                </div>
-            </div>
-        </footer>
-    </div>
 
     <script>
         // Obtener el parámetro 'producto' de la URL
@@ -114,4 +100,7 @@
     </script>
 
 </body>
+<?php
+include('../Nav/footer.php');
+?>
 </html>

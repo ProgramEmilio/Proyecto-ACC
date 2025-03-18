@@ -32,7 +32,7 @@ $menus = [
     5 => ["Ventas" => "#"],
     6 => ["Producción" => "../Produccion/pro.php"], // Producción solo ve producción
     7 => ["Distribución" => "../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
-    8 => ["../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
+    8 => ["Inventario" => "#"] // Responsable stock solo ve inventario
 ];
 include('CerrarSesion.php');
 ?>
@@ -49,6 +49,8 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../CSS/formularios.css" type="text/css">
     <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
+    <link rel="stylesheet" href="../Home/inicio_usuario.css" type="text/css">
+
 
 </head>
 <body>

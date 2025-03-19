@@ -56,13 +56,13 @@ create table articulos(
 id_articulo INT NOT NULL PRIMARY KEY,
 nombre_articulo VARCHAR(70) NOT NULL,
 descripcion TEXT NOT NULL,
-categoria TEXT NOT NULL,
+categoria ENUM('Insumo', 'Producto') NOT NULL, -- Producto - Insumo
 precio NUMERIC(16,2),
 costo NUMERIC(16,2),
 existencias INT NOT NULL DEFAULT 0,
+imagen VARCHAR(255),
 fecha_registro DATETIME NOT NULL
 );
-
 
 -- COMPRA
 -- MATERIA PRIMA
@@ -106,24 +106,22 @@ CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES persona(id_per
 ALTER TABLE pedido ADD COLUMN id_distribuidor INT;
 ALTER TABLE pedido ADD CONSTRAINT fk_id_distribuidor_pedi FOREIGN KEY (id_distribuidor) REFERENCES persona(id_persona);
 
+
 create table producto(
 id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 id_pedido VARCHAR(15),
-descripcion TEXT NOT NULL,
-categoria TEXT NOT NULL,
-precio_unitario FLOAT NOT NULL,
-impuestos FLOAT NOT NULL,
+id_articulo INT NOT NULL,
+id_cliente INT,
+id_productor INT,
+nombre_producto VARCHAR(70) NOT NULL,
 cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
-id_cliente INT,
 fecha DATETIME NOT NULL,
 CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES persona(id_persona),
 CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
+CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo)
 );
 
-ALTER TABLE producto ADD nombre_producto VARCHAR(70) NOT NULL;
-ALTER TABLE producto ADD COLUMN id_productor INT;
-ALTER TABLE producto ADD imagen VARCHAR(255) NOT NULL;
 
 create table producto_consumibles(
 id_producto_consumibles INT NOT NULL PRIMARY KEY,
@@ -187,3 +185,5 @@ INSERT INTO producto(nombre_producto, descripcion, categoria, precio_unitario, i
 ('Playera con logo','Playera con logo personalizada tela de algodon','Playera', 250, 50, 2, 'icono', NOW(),'playera2.png'),
 ('Agenda ejecutiva', 'Agenda de cuero con nombre grabado', 'Agenda', 180, 36, 3, 'texto', NOW(), 'agenda1.png'),  
 ('Termo metálico', 'Termo de acero inoxidable con diseño grabado', 'Termo', 300, 60, 2, 'imagen', NOW(), 'termo3.png');
+
+

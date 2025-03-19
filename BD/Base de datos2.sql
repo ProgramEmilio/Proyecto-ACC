@@ -67,7 +67,7 @@ fecha_registro DATETIME NOT NULL
 -- COMPRA
 -- MATERIA PRIMA
 create table solicitud_compra(
-id_solicitud INT NOT NULL PRIMARY KEY,
+id_solicitud INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_comprador_usuario INT NOT NULL, -- referencia a la tabla usuario agregar constrain
 id_proveedor_usuario INT, -- referencia a la tabla usuario
 descripcion TEXT NOT NULL,
@@ -79,11 +79,10 @@ CONSTRAINT fk_id_proveedor_usuario FOREIGN KEY (id_proveedor_usuario) REFERENCES
 );
 
 create table solicitud_compra_detalle(
-id_solicitud_detalle INT NOT NULL PRIMARY KEY,
+id_solicitud_detalle INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 id_solicitud INT NOT NULL, -- referencia a la tabla solicitud_compra agregar constrain
 id_articulo INT NOT NULL,
 cantidad INT NOT NULL,
-precio_unitario NUMERIC(16,2),
 subtotal NUMERIC(16,2), -- qutar posiblemente
 total NUMERIC(16,2), -- Cantidad por precio unitario
 fecha_registro DATETIME NOT NULL,

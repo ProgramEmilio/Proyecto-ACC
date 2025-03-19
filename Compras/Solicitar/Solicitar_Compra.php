@@ -17,7 +17,7 @@ $stmt->fetch();
 $stmt->close();
 
 // Consulta para obtener los artículos disponibles
-$sql = "SELECT id_articulo, nombre_articulo, descripcion, categoria, precio, existencias FROM articulos";
+$sql = "SELECT id_articulo, nombre_articulo, descripcion, categoria, precio, existencias FROM articulos WHERE categoria = 'Insumo'";
 $result = $conn->query($sql);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['solicitar'])) {
@@ -53,14 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['solicitar'])) {
         // Calcular el total
         $total_detalle = $cantidad * $precio_unitario;
 
+        // Generar un ID aleatorio para id_solicitud_detalle
+        $id_solicitud_detalle = rand(100000, 999999); // Ajusta el rango según sea necesario
+
         // Insertar el detalle de la solicitud de compra
-        $insert_detalle_sql = "INSERT INTO solicitud_compra_detalle (id_solicitud, id_articulo, cantidad, precio_unitario, total, fecha_registro) 
-                               VALUES (?, ?, ?, ?, ?, NOW())";
-        
+        $insert_detalle_sql = "INSERT INTO solicitud_compra_detalle (id_solicitud_detalle, id_solicitud, id_articulo, cantidad, subtotal, total, fecha_registro) 
+                            VALUES (?, ?, ?, ?, ?, ?, NOW())";
+
         $stmt = $conn->prepare($insert_detalle_sql);
-        $stmt->bind_param("iiidd", $id_solicitud, $id_articulo, $cantidad, $precio_unitario, $total_detalle);
+        $stmt->bind_param("iiiddd", $id_solicitud_detalle, $id_solicitud, $id_articulo, $cantidad, $subtotal, $total_detalle);
         $stmt->execute();
         $stmt->close();
+
+
 
         echo "<script>alert('Solicitud enviada correctamente.'); window.location.href='Solicitar_Compra.php';</script>";
     } else {

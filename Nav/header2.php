@@ -11,33 +11,33 @@ $id_rol = $_SESSION['id_rol'];
 // Definir opciones de menú por rol
 $menus = [
     1 => [ // Administrador
-        "Cliente" => "../Home/inicio.php",
-        "Usuario" => "../Usuarios/Usuario.php",
-        "Proveedor" => "../Compras/Cotizacion/Cotizar.php",
-        "Ventas" => "../Venta/Detalle_venta.php",
+        "Cliente" => "../../Home/inicio.php",
+        "Usuario" => "../../Usuarios/Usuario.php",
+        "Proveedor" => "../../Compras/Cotizacion/Cotizar.php",
+        "Ventas" => "../../Venta/Detalle_venta.php",
         "Compras" => [
-            "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
-            "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php"
+            "Solicitar" => "../../Compras/Solicitar/Solicitar_Compra.php",
+            "Aprobar" => "../../Compras/Aprobar/Aprobar_Compra.php"
         ],
-        "Inventario" => "../Inventario/Inventario.php",
-        "Distribución" => "../Distribucion/Distribucion.php",
+        "Inventario" => "../../Inventario/Inventario.php",
+        "Distribución" => "../../Distribucion/Distribucion.php",
         "Producción" => [
-        "Producción" => "../Produccion/pro.php",
-        "Productor" => "../Produccion/productor.php"
+        "Producción" => "../../Produccion/pro.php",
+        "Productor" => "../../Produccion/productor.php"
     ]],
     2 => ["Cliente"], // Cliente (Sin menú)
-    3 => ["Proveedor" => "../Compras/Cotizacion/Cotizar.php"],
+    3 => ["Proveedor" => "../../../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
-        "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
-        "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php",
+        "Solicitar" => "../../Compras/Solicitar/Solicitar_Compra.php",
+        "Aprobar" => "../../../Compras/Aprobar/Aprobar_Compra.php",
     ]],
-    5 => ["Ventas" => "../Venta/Detalle_venta.php"],
+    5 => ["Ventas" => "../../Venta/Detalle_venta.php"],
     6 => ["Producción" => [
-        "Producción" => "../Produccion/pro.php",
-        "Productor" => "../Produccion/productor.php",
+        "Producción" => "../../Produccion/pro.php",
+        "Productor" => "../../Produccion/productor.php",
     ]], 
-    7 => ["Distribución" => "../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
-    8 => ["../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
+    7 => ["Distribución" => "../../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
+    8 => ["../../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
 ];
 include('CerrarSesion.php');
 ?>
@@ -54,7 +54,8 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../../CSS/formularios.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/cabecera2.css" type="text/css">
-    
+    <link rel="stylesheet" href="../../CSS/Detalle_Producto.css" type="text/css">
+
 </head>
 <body>
 <header class="cabecera_p">

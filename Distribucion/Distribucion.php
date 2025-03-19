@@ -21,14 +21,16 @@ $rol_usuario = $_SESSION['id_rol'];
 
     <?php
     // Consulta SQL para obtener los productos y su información
-    $sql = "SELECT pro.id_producto, pro.nombre_producto, pro.descripcion, 
-            pro.precio_unitario, pro.impuestos, pro.cantidad, pro.fecha,
-            pedi.id_pedido, p.nom_persona AS nombre_cliente,p.apellido_paterno AS ap_p, p.apellido_materno as ap_m,
-            pedi.fecha_registro AS fecha_registro, pedi.estatus
-            FROM producto pro
-            JOIN pedido pedi ON pedi.id_pedido = pro.id_pedido
-            LEFT JOIN persona p ON p.id_persona = pro.id_cliente
-            WHERE pedi.estatus = 'A enviar' OR pedi.estatus = 'En distribucion' OR pedi.estatus = 'En camino' OR pedi.estatus = 'Entregado'";
+    $sql = "SELECT pro.id_producto, pro.nombre_producto, pro.id_pedido, pro.id_articulo, pro.id_cliente, pro.id_productor,
+    pro.cantidad, pro.personalizacion, pro.fecha,
+         pedi.id_pedido, pedi.id_pedido, pedi.id_cliente AS cliente_pedido, pedi.estatus, pedi.fecha_registro, pedi.id_distribuidor,
+         p.nom_persona AS nombre_cliente, 
+         p.apellido_paterno AS ap_p, p.apellido_materno AS ap_m,
+         pedi.fecha_registro AS fecha_registro, pedi.estatus
+         FROM producto pro
+         JOIN pedido pedi ON pedi.id_pedido = pro.id_pedido
+         LEFT JOIN persona p ON p.id_persona = pro.id_cliente
+         WHERE pedi.estatus IN ('A enviar', 'En distribucion', 'En camino', 'Entregado')";
 
     $result = $conn->query($sql);
 
@@ -79,7 +81,6 @@ $rol_usuario = $_SESSION['id_rol'];
             echo "<tr>
                     <td>" . $fila['id_producto'] . "</td>
                     <td>" . $fila['nombre_producto'] . "</td>
-                    <td>" . $fila['descripcion'] . "</td>
                     <td>" . $fila['precio_unitario'] . "</td>
                     <td>" . $fila['impuestos'] . "</td>
                     <td>" . $fila['cantidad'] . "</td>

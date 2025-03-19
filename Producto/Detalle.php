@@ -3,29 +3,29 @@ include('../BD/ConexionBD.php');
 include('../Nav/header.php');
 
 // Verifica si se recibe un id válido en la URL
-if (isset($_GET['id_producto']) && is_numeric($_GET['id_producto'])) {
-    $id_producto = intval($_GET['id_producto']); // Sanitiza el valor
+if (isset($_GET['id_articulo']) && is_numeric($_GET['id_articulo'])) {
+    $id_articulo = intval($_GET['id_articulo']); // Sanitiza el valor
 
-    // Consulta para obtener detalles del producto
-    $sql = "SELECT id_producto, nombre_producto, descripcion, precio_unitario, impuestos, personalizacion, imagen 
-            FROM producto 
-            WHERE id_producto = ?";
+    // Consulta para obtener detalles del artículo
+    $sql = "SELECT id_articulo, nombre_articulo, descripcion, precio, imagen 
+            FROM articulos 
+            WHERE id_articulo = ?";
     
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id_producto);
+    $stmt->bind_param("i", $id_articulo);
     $stmt->execute();
     $result = $stmt->get_result();
     
     if ($result->num_rows > 0) {
-        $producto = $result->fetch_assoc();
+        $articulo = $result->fetch_assoc();
     } else {
-        echo "<p class='error'>Producto no encontrado.</p>";
+        echo "<p class='error'>Artículo no encontrado.</p>";
         exit();
     }
 
     $stmt->close();
 } else {
-    echo "<p class='error'>ID de producto inválido.</p>";
+    echo "<p class='error'>ID de artículo inválido.</p>";
     exit();
 }
 $conn->close();
@@ -36,42 +36,31 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($producto['nombre_producto']); ?></title>
-    <link rel="stylesheet" href="../CSS/Detalle_producto.css"> <!-- Agrega tu CSS aquí -->
+    <title><?php echo htmlspecialchars($articulo['nombre_articulo']); ?></title>
 </head>
 <body>
 
     <div class="product-details-container">
         <div class="product-card">
             
-            <!-- Imagen del producto -->
+            <!-- Imagen del artículo -->
             <div class="product-image">
-                <img src="../Imagenes/<?php echo htmlspecialchars($producto['imagen'] ?: 'default.jpg'); ?>" 
-                     alt="<?php echo htmlspecialchars($producto['nombre_producto']); ?>">
+                <img src="../Imagenes/<?php echo htmlspecialchars($articulo['imagen'] ?: 'default.jpg'); ?>" 
+                     alt="<?php echo htmlspecialchars($articulo['nombre_articulo']); ?>">
             </div>
 
-            <!-- Información del producto -->
+            <!-- Información del artículo -->
             <div class="product-info">
-                <h1><?php echo htmlspecialchars($producto['nombre_producto']); ?></h1>
-                <p><?php echo nl2br(htmlspecialchars($producto['descripcion'])); ?></p>
+                <h1><?php echo htmlspecialchars($articulo['nombre_articulo']); ?></h1>
+                <p><?php echo nl2br(htmlspecialchars($articulo['descripcion'])); ?></p>
 
                 <div class="price">
-                    <p><strong>Precio:</strong> $<?php echo number_format($producto['precio_unitario'], 2); ?></p>
-                    <p><strong>Impuestos:</strong> $<?php echo number_format($producto['impuestos'], 2); ?></p>
+                    <p><strong>Precio:</strong> $<?php echo number_format($articulo['precio'], 2); ?></p>
                 </div>
 
                 <form action="comprar.php" method="POST">
-                <input type="hidden" name="id_producto" value="<?php echo $producto['id_producto']; ?>">
-
-                <?php if (!empty($producto['personalizacion'])): ?>
-                <label for="personalizacion">Personalización:</label>
-                <select name="personalizacion" id="personalizacion" class="custom-select">
-                    <option value="icono" <?php echo ($producto['personalizacion'] == 'icono') ? 'selected' : ''; ?>>Icono</option>
-                    <option value="imagen" <?php echo ($producto['personalizacion'] == 'imagen') ? 'selected' : ''; ?>>Imagen</option>
-                    <option value="texto" <?php echo ($producto['personalizacion'] == 'texto') ? 'selected' : ''; ?>>Texto</option>
-                </select>
-            <?php endif; ?>
-
+                <input type="hidden" name="id_articulo" value="<?php echo $articulo['id_articulo']; ?>">
+                
                 <label for="cantidad">Cantidad:</label>
                 <input type="number" name="cantidad" id="cantidad" class="custom-select" placeholder="Cantidad" required min="1">
 
@@ -82,7 +71,6 @@ $conn->close();
         </div>
     </div>
     <a href="../Home/inicio.php" class="regresar">Regresar</a>
-
 
 </body>
 <?php include('../Nav/footer.php'); ?>

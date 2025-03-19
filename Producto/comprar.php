@@ -4,7 +4,7 @@ session_start();
 
 $id_usuario = $_SESSION['id_usuario'];
 $id_producto = isset($_POST['id_producto']) ? intval($_POST['id_producto']) : 0;
-$cantidad = isset($_POST['cantidad']) ? intval($_POST['cantidad']) : 1;
+$cantidad = isset($_POST['cantidad']) ? intval($_POST['cantidad']) : 1;  // Agregar el signo '$'
 $personalizacion = isset($_POST['personalizacion']) ? $_POST['personalizacion'] : null;
 
 // Validaciones
@@ -13,30 +13,7 @@ if ($id_producto <= 0 || $cantidad <= 0) {
     exit();
 }
 
-// Obtener datos del producto
-$sql_producto = "SELECT descripcion, categoria, precio_unitario, impuestos FROM producto WHERE id_producto = ?";
-$stmt = $conn->prepare($sql_producto);
-$stmt->bind_param("i", $id_producto);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows == 0) {
-    echo "<p class='error'>Producto no encontrado.</p>";
-    exit();
-}
-
-$producto = $result->fetch_assoc();
-$stmt->close();
-
-// Buscar un pedido activo
-$sql_pedido = "SELECT id_pedido FROM pedido WHERE id_cliente = ? AND estatus = 'Generado'";
-$stmt = $conn->prepare($sql_pedido);
-$stmt->bind_param("i", $id_usuario);
-$stmt->execute();
-$result = $stmt->get_result();
-
-
-// Crear nuevo pedido
+// Generar nuevo pedido
 $id_pedido = uniqid('PED');
 $fecha_registro = date('Y-m-d H:i:s');
 
@@ -46,20 +23,13 @@ $stmt->bind_param("sis", $id_pedido, $id_usuario, $fecha_registro);
 $stmt->execute();
 $stmt->close();
 
-// Actualizar el producto con el id_pedido
+// Insertar producto asociado al pedido
 $fecha = date('Y-m-d H:i:s');
-$sql_update_producto = "UPDATE producto SET id_cliente = ?, id_pedido = ?, fecha = ? WHERE id_producto = ?";
+$sql_insert_producto = "INSERT INTO producto (id_pedido, id_articulo, id_cliente, nombre_producto, cantidad, personalizacion, fecha) VALUES (?, ?, ?, (SELECT nombre FROM articulos WHERE id_articulo = ?), ?, ?, ?)";
 
-$stmt = $conn->prepare($sql_update_producto);
-$stmt->bind_param("issi", $id_usuario, $id_pedido, $fecha, $id_producto);
+$stmt = $conn->prepare($sql_insert_producto);
+$stmt->bind_param("siisiss", $id_pedido, $id_producto, $id_usuario, $id_producto, $cantidad, $personalizacion, $fecha);
 $stmt->execute();
-
-if ($stmt->affected_rows == 0) {
-    echo "<p class='error'>Error al actualizar el producto.</p>";
-    exit();
-}
-
-
 $stmt->close();
 
 $conn->close();

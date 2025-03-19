@@ -180,9 +180,9 @@ INSERT INTO persona (id_persona, id_usuario, nom_persona, apellido_paterno, apel
 
 INSERT INTO articulos (id_articulo, nombre_articulo, descripcion, categoria, precio, costo, existencias, imagen, fecha_registro) VALUES
 -- Productos
-(1, 'Playera Personalizada', 'Playera personalizada con diseño a elección.', 'Producto', 250.00, 120.00, 50, 'playera2.jpg', NOW()),
-(2, 'Termo Personalizado', 'Termo de acero inoxidable con grabado personalizado.', 'Producto', 300.00, 150.00, 30, 'termo3.jpg', NOW()),
-(3, 'Agenda Personalizada', 'Agenda con portada personalizada.', 'Producto', 200.00, 100.00, 40, 'agenda1.jpg', NOW()),
+(1, 'Playera Personalizada', 'Playera personalizada con diseño a elección.', 'Producto', 250.00, 120.00, 50, 'playera2.png', NOW()),
+(2, 'Termo Personalizado', 'Termo de acero inoxidable con grabado personalizado.', 'Producto', 300.00, 150.00, 30, 'termo3.png', NOW()),
+(3, 'Agenda Personalizada', 'Agenda con portada personalizada.', 'Producto', 200.00, 100.00, 40, 'agenda1.png', NOW()),
 
 -- Insumos
 (4, 'Rótulo', 'Rótulo impreso en vinil adhesivo.', 'Insumo', 100.00, 50.00, 20, NULL, NOW()),

@@ -76,7 +76,8 @@ $id_productor_usuario = $_SESSION['id_usuario'];
                     <td>" . $fila['personalizacion'] . "</td>
                     <td>" . $fila['cliente'] . " " . $fila['ap_p'] . " " . $fila['ap_m'] . "</td>
                     <td><div class='estatus $estatus_class'>" . $fila['estatus'] . "</div></td>
-                    <td><a href='producir_pedido.php?id_pedido=" . $fila['id_pedido'] . "'>Producir</a></td>
+                    <td><a href='producir_pedido.php?id_producto=" . $fila['id_producto'] . "'>Producir</a></td>
+
                 </tr>";
         }
         echo "</tbody></table>";

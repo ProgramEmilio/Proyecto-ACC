@@ -6,27 +6,39 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
-// Verificar si se ha recibido el id_pedido
-if (isset($_GET['id_pedido'])) {
-    $id_pedido = $_GET['id_pedido'];
+// Verificar si se ha recibido el id_producto
+if (isset($_GET['id_producto'])) {
+    $id_producto = $_GET['id_producto'];
 
-    // Consulta para actualizar el estatus del pedido a "A enviar"
-    $sql = "UPDATE pedido SET estatus = 'A enviar' WHERE id_pedido = ?";
+    // Obtener el id_pedido del producto seleccionado
+    $query_pedido = "SELECT id_pedido FROM producto WHERE id_producto = ?";
+    if ($stmt = $conn->prepare($query_pedido)) {
+        $stmt->bind_param('i', $id_producto);
+        $stmt->execute();
+        $stmt->bind_result($id_pedido);
+        $stmt->fetch();
+        $stmt->close();
 
-    // Preparar y ejecutar la consulta
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param('i', $id_pedido);
-        if ($stmt->execute()) {
-            // Si la actualización fue exitosa, redirigir al listado de productos
-            header("Location: productor.php");
-            exit();
+        if (!empty($id_pedido)) {
+            // Actualizar el estatus del pedido a "A enviar"
+            $sql_update = "UPDATE pedido SET estatus = 'A enviar' WHERE id_pedido = ?";
+            if ($stmt_update = $conn->prepare($sql_update)) {
+                $stmt_update->bind_param('s', $id_pedido);
+                if ($stmt_update->execute()) {
+                    header("Location: productor.php");
+                    exit();
+                } else {
+                    echo "Error al cambiar el estatus: " . $conn->error;
+                }
+                $stmt_update->close();
+            }
         } else {
-            echo "Error al cambiar el estatus: " . $conn->error;
+            echo "No se encontró un pedido asociado a este producto.";
         }
     } else {
         echo "Error al preparar la consulta: " . $conn->error;
     }
 } else {
-    echo "ID de pedido no recibido.";
+    echo "ID de producto no recibido.";
 }
 ?>

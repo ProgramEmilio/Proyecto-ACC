@@ -54,7 +54,12 @@ $resultPedidos = mysqli_stmt_get_result($stmtPedidos);
     <div class="listado-pedidos">
 <?php while ($pedido = mysqli_fetch_assoc($resultPedidos)) : ?>
     <?php
-        $sqlProductos = "SELECT nombre_producto, descripcion, categoria, precio_unitario, impuestos, cantidad, personalizacion, imagen FROM producto WHERE id_pedido = ?";
+        $sqlProductos =  "SELECT pro.id_producto, pro.id_pedido, pro.id_articulo, pro.id_cliente, pro.id_productor, 
+                           pro.nombre_producto, pro.cantidad, pro.personalizacion, pro.fecha, 
+                           art.descripcion, art.categoria, art.precio, art.imagen  
+                            FROM producto pro
+                            JOIN articulos art ON pro.id_articulo = art.id_articulo
+                            WHERE pro.id_pedido = ?";
         $stmtProductos = mysqli_prepare($conn, $sqlProductos);
         mysqli_stmt_bind_param($stmtProductos, "s", $pedido['id_pedido']);
         mysqli_stmt_execute($stmtProductos);
@@ -76,8 +81,7 @@ $resultPedidos = mysqli_stmt_get_result($stmtPedidos);
                     <p><strong>Producto:</strong> <?php echo htmlspecialchars($producto['nombre_producto']); ?></p>
                     <p><strong>Descripción:</strong> <?php echo htmlspecialchars($producto['descripcion']); ?></p>
                     <p><strong>Categoría:</strong> <?php echo htmlspecialchars($producto['categoria']); ?></p>
-                    <p><strong>P/U:</strong> $<?php echo number_format($producto['precio_unitario'], 2); ?></p>
-                    <p><strong>Impuestos:</strong> $<?php echo number_format($producto['impuestos'], 2); ?></p>
+                    <p><strong>P/U:</strong> $<?php echo number_format($producto['precio'], 2); ?></p>
                     <p><strong>Cantidad:</strong> <?php echo htmlspecialchars($producto['cantidad']); ?></p>
                     <p><strong>Personalización:</strong> <?php echo htmlspecialchars($producto['personalizacion']); ?></p>
                 </div>

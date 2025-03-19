@@ -40,11 +40,9 @@ $rol_usuario = $_SESSION['id_rol'];
                 <thead>
                     <tr>
                         <th>ID Producto</th>
+                        <th>ID Pedido</th>
                         <th>Producto</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
                         <th>Impuestos</th>
-                        <th>Cantidad</th>
                         <th>Fecha</th>
                         <th>Estatus</th>
                         <th>Detalle</th>
@@ -80,9 +78,8 @@ $rol_usuario = $_SESSION['id_rol'];
 
             echo "<tr>
                     <td>" . $fila['id_producto'] . "</td>
+                    <td>" . $fila['id_pedido'] . "</td>
                     <td>" . $fila['nombre_producto'] . "</td>
-                    <td>" . $fila['precio_unitario'] . "</td>
-                    <td>" . $fila['impuestos'] . "</td>
                     <td>" . $fila['cantidad'] . "</td>
                     <td>" . $fila['fecha'] . "</td>
                     <td><div class='estatus $estatus_class'>" . $fila['estatus'] . "</div></td>
@@ -94,8 +91,6 @@ $rol_usuario = $_SESSION['id_rol'];
         echo "<p>No se encontraron productos para envío.</p>";
     }
     ?>
-
-    <a href="../Usuario.php" class="regresar">Regresar</a>
 
 </body>
 

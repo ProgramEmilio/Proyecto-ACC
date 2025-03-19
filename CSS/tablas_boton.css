@@ -61,13 +61,13 @@
 
 .tabla th{
     border: 1px solid #ddd;
-    padding: 1px 1px;
+    padding: 5px 5px;
     text-align: center;
 }
 /*ESTE SE TIENE QUE AJUSTAR PARA VER EL TAMAÑO DE LA TABLA*/
 .tabla td{
     border: 1px solid #ddd;
-    padding: 0.5px 0.5px;
+    padding: 0.3px 0.3px;
     text-align: left;
 }
 

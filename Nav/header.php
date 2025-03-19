@@ -55,6 +55,7 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
     <link rel="stylesheet" href="../CSS/Detalle_Producto.css" type="text/css">
+    <link rel="stylesheet" href="../CSS/eliminar.css" type="text/css">
 
 </head>
 <body>

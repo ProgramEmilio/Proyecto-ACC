@@ -10,8 +10,14 @@ $query_pedido = "SELECT * FROM pedido WHERE id_pedido = '$id_pedido'";
 $result_pedido = mysqli_query($conn, $query_pedido);
 $pedido = mysqli_fetch_assoc($result_pedido);
 
-// Recuperar productos relacionados con el pedido
-$query_productos = "SELECT * FROM producto WHERE id_pedido = '$id_pedido'";
+// Recuperar productos relacionados con el pedido junto con los datos de la tabla articulos
+$query_productos = "SELECT pro.id_producto, pro.id_pedido, pro.id_articulo, pro.id_cliente, pro.id_productor, 
+                           pro.nombre_producto, pro.cantidad, pro.personalizacion, pro.fecha, 
+                           art.descripcion, art.categoria, art.precio 
+                    FROM producto pro
+                    JOIN articulos art ON pro.id_articulo = art.id_articulo
+                    WHERE pro.id_pedido = '$id_pedido'";
+
 $result_productos = mysqli_query($conn, $query_productos);
 
 // Recuperar artículos disponibles
@@ -196,13 +202,13 @@ if (isset($_POST['procesar'])) {
                 <tr>
                     <th>Nombre</th>
                     <th>Cantidad</th>
-                    <th>Precio</th>
+                    <th>Total</th>
                 </tr>
                 <?php while ($producto = mysqli_fetch_assoc($result_productos)): ?>
                 <tr>
                     <td><?php echo $producto['descripcion']; ?></td>
                     <td><?php echo $producto['cantidad']; ?></td>
-                    <td>$<?php echo number_format($producto['precio_unitario'], 2); ?></td>
+                    <td>$<?php echo number_format($producto['precio'] * $producto['cantidad'], 2); ?></td>
                 </tr>
                 <?php endwhile; ?>
             </table>

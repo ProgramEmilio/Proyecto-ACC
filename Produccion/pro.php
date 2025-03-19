@@ -63,7 +63,7 @@ include('../Nav/header.php');
                     <td>{$fila['nombre_producto']}</td>
                     <td>{$fila['descripcion']}</td>
                     <td>{$fila['categoria']}</td>
-                    <td>{$fila['precio_unitario']}</td>
+                    <td>{$fila['precio']}</td>
                     <td>{$fila['cantidad']}</td>
                     <td>{$fila['fecha']}</td>
                     <td>{$fila['nombre_cliente']} {$fila['ap_p']} {$fila['ap_m']}</td>

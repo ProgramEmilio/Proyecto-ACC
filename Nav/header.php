@@ -1,9 +1,9 @@
 <?php
-include('../BD/ConexionBD.php');
+include('conexion.php');
 
 session_start(); // Asegura que se mantenga la sesión
 if (!isset($_SESSION['id_rol'])) {
-    header("Location: ../Login/login.php"); // Redirige si no hay sesión activa
+    header("Location:login.php"); // Redirige si no hay sesión activa
     exit();
 }
 $id_rol = $_SESSION['id_rol'];
@@ -11,15 +11,15 @@ $id_rol = $_SESSION['id_rol'];
 // Definir opciones de menú por rol
 $menus = [
     1 => [ // Administrador
-        "Cliente" => "../Home/inicio.php",
-        "Usuario" => "../Usuarios/Usuario.php",
-        "Proveedor" => "../Compras/Cotizacion/Cotizar.php",
+        "Cliente" => "inicio.php",
+        "Usuario" => "Usuario.php",
+        "Proveedor" => "Cotizar.php",
         "Ventas" => "#",
         "Compras" => [
-            "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
+            "Solicitar" => "Solicitar_Compra.php",
             "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php"
         ],
-        "Inventario" => "../Inventario/Inventario.php",
+        "Inventario" => "..Inventario.php",
         "Distribución" => "../Distribucion/Distribucion.php",
         "Producción" => "../Produccion/pro.php"
     ],

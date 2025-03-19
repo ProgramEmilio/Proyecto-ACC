@@ -10,7 +10,7 @@ body {
     height: 100vh;
 }
 
-/* Contenedor del login */
+/* Contenedor del formulario */
 .login-container {
     display: flex;
     justify-content: center;
@@ -19,7 +19,7 @@ body {
     height: 100vh;
 }
 
-/* Caja del login */
+/* Caja del formulario */
 .login-box {
     background: white;
     padding: 40px;
@@ -78,8 +78,8 @@ h2 {
     padding: 0 5px;
 }
 
-/* Botón de registro */
-.register-button {
+/* Botón de formulario */
+.login-button {
     width: 100%;
     padding: 12px;
     background-color: #ee22a0;
@@ -91,11 +91,10 @@ h2 {
     transition: 0.3s;
 }
 
-.register-button:hover {
+.login-button:hover {
     background-color: #d91c8e;
 }
 
-/* Enlace de login */
 .login-link {
     margin-top: 15px;
     font-size: 14px;

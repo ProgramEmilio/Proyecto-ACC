@@ -1,5 +1,5 @@
-create database ACC;
-use ACC;
+create database PACC;
+use PACC;
 
 -- drop database ACC;
 -- drop table Usuario;
@@ -118,7 +118,7 @@ cantidad INT NOT NULL,
 personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
 fecha DATETIME NOT NULL,
 CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES persona(id_persona),
-CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
+CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
 CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo)
 );
 
@@ -180,10 +180,26 @@ INSERT INTO persona (id_persona, id_usuario, nom_persona, apellido_paterno, apel
 (7, 7, 'Roberto', 'Castro', 'Vega', 'RFC789012345', '33445', 'Calle 7', 4, 22, 'Norte', 'Ciudad G', '5566778899'),
 (8, 8, 'Elena', 'Morales', 'Rios', 'RFC890123456', '55667', 'Calle 8', 3, 14, 'Sur', 'Ciudad H', '6677889900');
 
+INSERT INTO articulos (id_articulo, nombre_articulo, descripcion, categoria, precio, costo, existencias, imagen, fecha_registro) VALUES
+-- Productos
+(1, 'Playera Personalizada', 'Playera personalizada con diseño a elección.', 'Producto', 250.00, 120.00, 50, 'playera2.jpg', NOW()),
+(2, 'Termo Personalizado', 'Termo de acero inoxidable con grabado personalizado.', 'Producto', 300.00, 150.00, 30, 'termo3.jpg', NOW()),
+(3, 'Agenda Personalizada', 'Agenda con portada personalizada.', 'Producto', 200.00, 100.00, 40, 'agenda1.jpg', NOW()),
 
+-- Insumos
+(4, 'Rótulo', 'Rótulo impreso en vinil adhesivo.', 'Insumo', 100.00, 50.00, 20, NULL, NOW()),
+(5, 'Cajas de cartón', 'Cajas de cartón para embalaje.', 'Insumo', 15.00, 7.00, 100, NULL, NOW()),
+(6, 'Playera', 'Playera en blanco para sublimación.', 'Insumo', 80.00, 40.00, 60, NULL, NOW()),
+(7, 'Termo', 'Termo en acero inoxidable sin grabado.', 'Insumo', 200.00, 100.00, 25, NULL, NOW()),
+(8, 'Agenda', 'Agenda en blanco lista para personalización.', 'Insumo', 150.00, 75.00, 30, NULL, NOW());
+
+/*
 INSERT INTO producto(nombre_producto, descripcion, categoria, precio_unitario, impuestos, cantidad, personalizacion, fecha, imagen) VALUES
 ('Playera con logo','Playera con logo personalizada tela de algodon','Playera', 250, 50, 2, 'icono', NOW(),'playera2.png'),
 ('Agenda ejecutiva', 'Agenda de cuero con nombre grabado', 'Agenda', 180, 36, 3, 'texto', NOW(), 'agenda1.png'),  
 ('Termo metálico', 'Termo de acero inoxidable con diseño grabado', 'Termo', 300, 60, 2, 'imagen', NOW(), 'termo3.png');
+*/
+
+
 
 

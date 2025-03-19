@@ -6,10 +6,8 @@ include('../Nav/header.php');
 if (isset($_GET['id_articulo']) && is_numeric($_GET['id_articulo'])) {
     $id_articulo = intval($_GET['id_articulo']); // Sanitiza el valor
 
-    // Consulta para obtener detalles del artículo
-    $sql = "SELECT id_articulo, nombre_articulo, descripcion, precio, imagen 
-            FROM articulos 
-            WHERE id_articulo = ?";
+    // Consulta para obtener detalles del artículo sin JOIN con producto
+    $sql = "SELECT id_articulo, nombre_articulo, descripcion, precio, imagen FROM articulos WHERE id_articulo = ?";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_articulo);
@@ -59,13 +57,20 @@ $conn->close();
                 </div>
 
                 <form action="comprar.php" method="POST">
-                <input type="hidden" name="id_articulo" value="<?php echo $articulo['id_articulo']; ?>">
-                
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" class="custom-select" placeholder="Cantidad" required min="1">
+                    <input type="hidden" name="id_articulo" value="<?php echo $articulo['id_articulo']; ?>">
 
-                <button type="submit" class="buy-button">Comprar</button>
-              </form>
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" class="custom-select" placeholder="Cantidad" required min="1">
+
+                    <label for="personalizacion">Personalización:</label>
+                    <select name="personalizacion" id="personalizacion" class="custom-select">
+                        <option value="icono">Icono</option>
+                        <option value="imagen">Imagen</option>
+                        <option value="texto">Texto</option>
+                    </select>
+
+                    <button type="submit" class="buy-button">Comprar</button>
+                </form>
             </div>
             
         </div>

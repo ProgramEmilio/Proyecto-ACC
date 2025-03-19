@@ -15,8 +15,8 @@ $id_productor_usuario = $_SESSION['id_usuario'];
 
     <?php
     // Consulta SQL para obtener los productos y su información
-    $sql = "SELECT p.id_producto, p.nombre_producto, p.descripcion, 
-    p.categoria, p.precio_unitario, p.impuestos, p.cantidad, p.personalizacion, 
+    $sql = "SELECT p.id_producto, p.id_pedido, p.id_articulo, p.nombre_producto,
+    p.personalizacion, 
     p.fecha, pedi.id_pedido, pe.nom_persona AS cliente, 
     pe.apellido_paterno AS ap_p, pe.apellido_materno as ap_m, 
     pedi.fecha_registro AS fecha_registro, pedi.estatus
@@ -33,11 +33,8 @@ $id_productor_usuario = $_SESSION['id_usuario'];
                 <thead>
                     <tr>
                         <th>ID Producto</th>
+                        <th>ID Pedido</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Categoría</th>
-                        <th>Precio Unitario</th>
-                        <th>Cantidad</th>
                         <th>Personalización</th>
                         <th>Cliente</th>
                         <th>Estatus</th>
@@ -74,11 +71,8 @@ $id_productor_usuario = $_SESSION['id_usuario'];
 
             echo "<tr>
                     <td>" . $fila['id_producto'] . "</td>
+                    <td>" . $fila['id_pedido'] . "</td>
                     <td>" . $fila['nombre_producto'] . "</td>
-                    <td>" . $fila['descripcion'] . "</td>
-                    <td>" . $fila['categoria'] . "</td>
-                    <td>" . $fila['precio_unitario'] . "</td>
-                    <td>" . $fila['cantidad'] . "</td>
                     <td>" . $fila['personalizacion'] . "</td>
                     <td>" . $fila['cliente'] . " " . $fila['ap_p'] . " " . $fila['ap_m'] . "</td>
                     <td><div class='estatus $estatus_class'>" . $fila['estatus'] . "</div></td>

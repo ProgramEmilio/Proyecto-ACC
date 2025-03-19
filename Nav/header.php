@@ -21,8 +21,10 @@ $menus = [
         ],
         "Inventario" => "../Inventario/Inventario.php",
         "Distribución" => "../Distribucion/Distribucion.php",
-        "Producción" => "../Produccion/pro.php"
-    ],
+        "Producción" => [
+        "Producción" => "../Produccion/pro.php",
+        "Productor" => "../Produccion/productor.php"
+    ]],
     2 => ["Cliente"], // Cliente (Sin menú)
     3 => ["Proveedor" => "../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
@@ -30,7 +32,10 @@ $menus = [
         "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php",
     ]],
     5 => ["Ventas" => "../Venta/Detalle_venta.php"],
-    6 => ["Producción" => "../Produccion/pro.php"], // Producción solo ve producción
+    6 => ["Producción" => [
+        "Producción" => "../Produccion/pro.php",
+        "Productor" => "../Produccion/productor.php",
+    ]], 
     7 => ["Distribución" => "../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
     8 => ["../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
 ];

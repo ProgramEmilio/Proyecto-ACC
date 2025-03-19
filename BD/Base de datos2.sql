@@ -119,20 +119,18 @@ personalizacion ENUM('icono', 'imagen', 'texto') NOT NULL,
 fecha DATETIME NOT NULL,
 CONSTRAINT fk_id_cliente_producto FOREIGN KEY (id_cliente) REFERENCES persona(id_persona),
 CONSTRAINT fk_id_pedido FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
-CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo)
+CONSTRAINT fk_id_articulo_C FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo)
 );
 
 
 create table producto_consumibles(
-id_producto_consumibles INT NOT NULL PRIMARY KEY,
+id_producto_consumibles INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 descripcion TEXT NOT NULL,
 id_articulo INT NOT NULL,
 id_producto_t INT NOT NULL,
 CONSTRAINT fk_id_articulo FOREIGN KEY (id_articulo) REFERENCES articulos(id_articulo),
 CONSTRAINT fk_id_producto_t FOREIGN KEY (id_producto_t) REFERENCES producto(id_producto)
 );
-
-ALTER TABLE producto_consumibles MODIFY id_producto_consumibles INT NOT NULL AUTO_INCREMENT;
 
 -- DISTRIBUCIÓN
 

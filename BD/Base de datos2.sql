@@ -1,5 +1,5 @@
-create database PACC;
-use PACC;
+create database ACC;
+use ACC;
 
 -- drop database ACC;
 -- drop table Usuario;

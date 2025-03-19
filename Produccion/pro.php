@@ -14,13 +14,14 @@ include('../Nav/header.php');
     <h1 class="titulo">Producción</h1>
 
     <?php
-    // Consulta SQL mejorada para obtener productos y pedidos
-    $sql = "SELECT pro.id_producto, pro.descripcion, pro.categoria, pro.precio_unitario, 
-                   pro.impuestos, pro.cantidad, pro.fecha, pro.personalizacion, pro.nombre_producto,
+    // Nueva consulta SQL para obtener productos, pedidos y artículos
+    $sql = "SELECT pro.id_producto, art.descripcion, art.categoria, art.precio, 
+                   pro.cantidad, pro.fecha, pro.personalizacion, pro.nombre_producto,
                    pedi.id_pedido, pedi.estatus, pedi.fecha_registro,
                    p.nom_persona AS nombre_cliente, p.apellido_paterno AS ap_p, p.apellido_materno AS ap_m
             FROM pedido pedi
             JOIN producto pro ON pedi.id_pedido = pro.id_pedido
+            JOIN articulos art ON pro.id_articulo = art.id_articulo
             LEFT JOIN persona p ON pedi.id_cliente = p.id_persona";
 
     $result = $conn->query($sql);
@@ -35,7 +36,6 @@ include('../Nav/header.php');
                         <th>Descripción Producto</th>
                         <th>Categoría</th>
                         <th>Precio Unitario</th>
-                        <th>Impuestos</th>
                         <th>Cantidad</th>
                         <th>Fecha Registro</th>
                         <th>Cliente</th>
@@ -64,7 +64,6 @@ include('../Nav/header.php');
                     <td>{$fila['descripcion']}</td>
                     <td>{$fila['categoria']}</td>
                     <td>{$fila['precio_unitario']}</td>
-                    <td>{$fila['impuestos']}</td>
                     <td>{$fila['cantidad']}</td>
                     <td>{$fila['fecha']}</td>
                     <td>{$fila['nombre_cliente']} {$fila['ap_p']} {$fila['ap_m']}</td>
@@ -77,7 +76,7 @@ include('../Nav/header.php');
     } else {
         echo "<p>No se encontraron productos.</p>";
     }
-    ?>
+?>
 
 
 </body>

@@ -22,7 +22,8 @@ include('../Nav/header.php');
             FROM pedido pedi
             JOIN producto pro ON pedi.id_pedido = pro.id_pedido
             JOIN articulos art ON pro.id_articulo = art.id_articulo
-            LEFT JOIN persona p ON pedi.id_cliente = p.id_persona";
+            LEFT JOIN persona p ON pedi.id_cliente = p.id_persona
+            WHERE pedi.estatus = 'En preparacion' OR pedi.estatus = 'Generado'";
 
     $result = $conn->query($sql);
 

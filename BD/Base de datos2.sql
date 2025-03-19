@@ -97,7 +97,7 @@ CONSTRAINT fk_id_solicitud_articulo FOREIGN KEY (id_articulo) REFERENCES articul
 create table pedido(
 id_pedido VARCHAR(15) NOT NULL PRIMARY KEY,
 id_cliente INT NOT NULL,
-estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado') DEFAULT 'Generado',
+estatus ENUM('Generado', 'En preparacion','A enviar','En distribucion', 'En camino','Entregado','Devolución','Recolectar pedido','Recolectar en almacen') DEFAULT 'Generado',
 fecha_registro DATETIME NOT NULL,
 CONSTRAINT fk_id_cliente_pedi FOREIGN KEY (id_cliente) REFERENCES persona(id_persona)
 );

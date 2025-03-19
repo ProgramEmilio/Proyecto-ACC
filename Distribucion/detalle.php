@@ -9,8 +9,8 @@ if (!$conn) {
 $id_producto = $_GET['id_producto'];
 
 // Consulta SQL para obtener el detalle del producto
-$sql = "SELECT pro.id_producto, pro.nombre_producto, pro.descripcion, 
-        pro.precio_unitario, pro.impuestos, pro.cantidad, pro.fecha,
+$sql = "SELECT pro.id_producto, pro.nombre_producto, 
+        pro.fecha,
         pedi.id_pedido, p.nom_persona AS nombre_cliente, p.apellido_paterno AS ap_p, p.apellido_materno AS ap_m,
         p.codigo_postal, p.calle, p.colonia, p.num_int, p.num_ext,
         p.telefono, p.ciudad, u.correo AS email, pedi.fecha_registro AS fecha_registro, pedi.estatus,
@@ -48,10 +48,6 @@ if ($result->num_rows > 0) {
         <h3 class="sub_titulo">Pedido</h3>
         <p><strong>Pedido:</strong> <?php echo $producto['id_pedido']; ?></p>
         <p><strong>Producto:</strong> <?php echo $producto['nombre_producto']; ?></p>
-        <p><strong>Descripción:</strong> <?php echo $producto['descripcion']; ?></p>
-        <p><strong>Precio:</strong> <?php echo $producto['precio_unitario']; ?></p>
-        <p><strong>Impuestos:</strong> <?php echo $producto['impuestos']; ?></p>
-        <p><strong>Cantidad:</strong> <?php echo $producto['cantidad']; ?></p>
         <p><strong>Fecha de Registro:</strong> <?php echo $producto['fecha_registro']; ?></p>
         <p><strong>Fecha del Pedido:</strong> <?php echo $producto['fecha']; ?></p>
         

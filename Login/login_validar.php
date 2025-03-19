@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: ../Compras/Aprobar/Aprobar_Compra.php");
                         break;
                     case 5: // Vendedor
-                        header("Location: ../Ventas/ventas.php");
+                        header("Location: ../Venta/Detalle_venta.php");
                         break;
                     case 6: // Producción
                         header("Location: ../Produccion/pro.php");
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         header("Location: ../Inventario/Inventario.php");
                         break;
                     default:
-                        header("Location: ../Inicio/inicio.php"); // Si el rol no existe, ir a una página por defecto
+                        header("Location: ../Home/inicio.php"); // Si el rol no existe, ir a una página por defecto
                         break;
                 }
                 exit();

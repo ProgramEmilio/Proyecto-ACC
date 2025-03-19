@@ -1,6 +1,6 @@
 <?php
 include('../BD/ConexionBD.php');
-session_start();
+include('../Nav/header.php');
 // Verificar conexión a la base de datos
 if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
@@ -9,21 +9,7 @@ if (!$conn) {
 $id_productor_usuario = $_SESSION['id_usuario'];
 
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
-    <link rel="stylesheet" href="../CSS/menu.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/cabecera.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/pie_pagina.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/tablas_boton.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/formularios.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
 
-</head>
 <body>
     <h1 class="titulo">Lista de Productos</h1>
 

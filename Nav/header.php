@@ -11,9 +11,9 @@ $id_rol = $_SESSION['id_rol'];
 // Definir opciones de menú por rol
 $menus = [
     1 => [ // Administrador
-        "Cliente" => "inicio.php",
-        "Usuario" => "Usuario.php",
-        "Proveedor" => "Cotizar.php",
+        "Cliente" => "../Home/inicio.php",
+        "Usuario" => "../Usuarios/Usuario.php",
+        "Proveedor" => "../Compras/Cotizacion/Cotizar.php",
         "Ventas" => "#",
         "Compras" => [
             "Solicitar" => "Solicitar_Compra.php",
@@ -21,18 +21,24 @@ $menus = [
         ],
         "Inventario" => "..Inventario.php",
         "Distribución" => "../Distribucion/Distribucion.php",
-        "Producción" => "../Produccion/pro.php"
+        "Producción" =>[
+           "Produccion" => "../Produccion/pro.php",
+           "Productor" => "../Produccion/Productor.php"
+        ] 
     ],
-    2 => ["Cliente"], // Cliente (Sin menú)
+    2 => ["Catalogo" => "../Home/inicio.php"],
     3 => ["Proveedor" => "../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
         "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
         "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php",
     ]],
-    5 => ["Ventas" => "#"],
-    6 => ["Producción" => "../Produccion/pro.php"], // Producción solo ve producción
+    5 => ["Ventas" => "../Venta/Detalle_venta.php"],
+    6 => ["Producción" => [
+          "Produccion" => "../Produccion/pro.php",
+           "Productor" => "../Produccion/Productor.php"
+    ]],
     7 => ["Distribución" => "../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
-    8 => ["../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
+    8 => ["Inventario" => "#"] // Responsable stock solo ve inventario
 ];
 include('CerrarSesion.php');
 ?>
@@ -49,6 +55,9 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../CSS/formularios.css" type="text/css">
     <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
+    <link rel="stylesheet" href="../Home/inicio_usuario.css" type="text/css">
+    <link rel="stylesheet" href="../CSS/eliminar.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>

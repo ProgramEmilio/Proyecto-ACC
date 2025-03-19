@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['aprobar'])) {
 <body>
     <h1 class="titulo">Aprobar Compras</h1>
 
-    <table class='tabla'>
+    <table class='tabla_com'>
         <thead>
             <tr>
                 <th>ID Solicitud</th>

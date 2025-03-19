@@ -1,6 +1,6 @@
 <?php
 include('../../BD/ConexionBD.php');
-session_start();
+
 include('../../Nav/header2.php');
 if (!isset($_SESSION['id_usuario'])) {
     die("Error: No hay un usuario en sesión.");
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cotizar'])) {
 <body>
     <h1 class="titulo">Cotizar Solicitud</h1>
 
-    <table class='tabla'>
+    <table class='tabla_com'>
         <thead>
             <tr>
                 <th>ID Solicitud</th>

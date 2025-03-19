@@ -52,8 +52,6 @@ include('../Nav/header.php');
             ?>
         </tbody>
     </table>
-
-    <a href="../Usuario.php" class="regresar">Regresar</a>
 </body>
 <?php
 include('../Nav/footer.php');

@@ -69,7 +69,7 @@ fecha_registro DATETIME NOT NULL
 create table solicitud_compra(
 id_solicitud INT NOT NULL PRIMARY KEY,
 id_comprador_usuario INT NOT NULL, -- referencia a la tabla usuario agregar constrain
-id_proveedor_usuario INT NOT NULL, -- referencia a la tabla usuario
+id_proveedor_usuario INT, -- referencia a la tabla usuario
 descripcion TEXT NOT NULL,
 total NUMERIC(16,2), -- sumatoria de todos los detalles
 fecha_registro DATETIME NOT NULL,

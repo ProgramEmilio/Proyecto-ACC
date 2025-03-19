@@ -6,6 +6,16 @@ if (!$conn) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
+$id_comprador_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario en sesión
+
+$sql = "SELECT id_persona FROM persona WHERE id_usuario = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_comprador_usuario);
+$stmt->execute();
+$stmt->bind_result($id_persona);
+$stmt->fetch();
+$stmt->close();
+
 // Consulta para obtener los artículos disponibles
 $sql = "SELECT id_articulo, nombre_articulo, descripcion, categoria, precio, existencias FROM articulos";
 $result = $conn->query($sql);
@@ -13,7 +23,6 @@ $result = $conn->query($sql);
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['solicitar'])) {
     $id_articulo = $_POST['id_articulo'];
     $cantidad = $_POST['cantidad'];
-    $id_comprador_usuario = 1651; // Se debe obtener de la sesión en un futuro
     
     if ($cantidad > 0) {
         // Insertar la solicitud de compra

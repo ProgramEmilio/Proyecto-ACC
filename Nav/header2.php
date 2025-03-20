@@ -17,7 +17,10 @@ $menus = [
             "Registro" => "../../Usuarios/Registro/Registro_Usuario.php"
         ],
         "Proveedor" => "../../Compras/Cotizacion/Cotizar.php",
-        "Ventas" => "../../Venta/Detalle_venta.php",
+        "Ventas" => [
+        "Detalle" => "../../Venta/Detalle_venta.php",
+        "Bitacora" => "../../Venta/Bitacora.php"
+        ],
         "Compras" => [
             "Solicitar" => "../../Compras/Solicitar/Solicitar_Compra.php",
             "Aprobar" => "../../Compras/Aprobar/Aprobar_Compra.php",
@@ -36,7 +39,10 @@ $menus = [
         "Aprobar" => "../../../Compras/Aprobar/Aprobar_Compra.php",
         "Historial" => "../../Compras/Reporte/Reporte_Compras.php"
     ]],
-    5 => ["Ventas" => "../../Venta/Detalle_venta.php"],
+    5 => ["Ventas" => [
+        "Detalle" => "../../Venta/Detalle_venta.php",
+        "Bitacora" => "../../Venta/Bitacora.php"
+        ]],
     6 => ["Producción" => [
         "Producción" => "../../Produccion/pro.php",
         "Productor" => "../../Produccion/productor.php",

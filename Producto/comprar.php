@@ -58,6 +58,18 @@ $stmt->bind_param("siisiss", $id_pedido, $id_articulo, $id_usuario, $articulo['n
 $stmt->execute();
 $stmt->close();
 
+// Generar un ID aleatorio para id_pedido_bitacora
+$id_pedido_bitacora = rand(100000, 999999); // Asegúrate de que este rango no cause conflictos con los IDs existentes
+
+// Insertar el producto asociado al pedido en la tabla 'pedido_bitacora'
+$sql_insert_pedido_bitacora = "INSERT INTO pedido_bitacora (id_pedido_bitacora, id_pedido, id_usuario, estatus_pedido, fecha_registro) 
+                               VALUES (?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql_insert_pedido_bitacora); // Usamos el nombre correcto de la variable SQL
+$stmt->bind_param("issss", $id_pedido_bitacora, $id_pedido, $id_usuario, $estatus_pedido, $fecha_registro); // Aseguramos que los tipos coincidan
+$estatus_pedido = 'Generado'; // Asignar valor 'Generado' al estatus
+$stmt->execute();
+$stmt->close();
+
 // Cerrar la conexión
 $conn->close();
 

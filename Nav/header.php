@@ -20,7 +20,8 @@ $menus = [
         "Ventas" => "../Venta/Detalle_venta.php",
         "Compras" => [
             "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
-            "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php"
+            "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php",
+            "Historial" => "../Compras/Reporte/Reporte_Compras.php"
         ],
         "Inventario" => "../Inventario/Inventario.php",
         "Distribución" => "../Distribucion/Distribucion.php",
@@ -33,6 +34,7 @@ $menus = [
     4 => ["Compras" => [
         "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
         "Aprobar" => "../Compras/Aprobar/Aprobar_Compra.php",
+        "Historial" => "../Compras/Reporte/Reporte_Compras.php"
     ]],
     5 => ["Ventas" => "../Venta/Detalle_venta.php"],
     6 => ["Producción" => [

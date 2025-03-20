@@ -85,6 +85,18 @@ $resultPedidos = mysqli_stmt_get_result($stmtPedidos);
                     <p><strong>Cantidad:</strong> <?php echo htmlspecialchars($producto['cantidad']); ?></p>
                     <p><strong>Personalización:</strong> <?php echo htmlspecialchars($producto['personalizacion']); ?></p>
                 </div>
+                
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="encuesta.php?id_pedido=<?php echo $producto['id_producto']; ?>" 
+                style="display: inline-block; padding: 10px 20px; margin: 10px; background-color:rgb(36, 176, 73); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                Encuesta de Satisfacción
+                </a>
+                
+                <a href="actualizar_estatus.php?id_producto=<?php echo $producto['id_producto']; ?>&estatus=Devolución" 
+                style="display: inline-block; padding: 10px 20px; margin: 10px; background-color:rgb(234, 168, 12); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                Devolución
+                </a>
             </div>
         </div>
     <?php endwhile; ?>

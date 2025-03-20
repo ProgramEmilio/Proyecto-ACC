@@ -32,7 +32,10 @@ $menus = [
         "Producción" => "../../Produccion/pro.php",
         "Productor" => "../../Produccion/productor.php"
     ]],
-    2 => ["Cliente"], // Cliente (Sin menú)
+    2 => ["Catalogo" => [
+        "Catalogo" => "../../Home/inicio.php",
+        "Pedio" => "../Venta/Detalle_venta.php"
+    ]],
     3 => ["Proveedor" => "../../../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
         "Solicitar" => "../../Compras/Solicitar/Solicitar_Compra.php",

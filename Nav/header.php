@@ -11,7 +11,10 @@ $id_rol = $_SESSION['id_rol'];
 // Definir opciones de menú por rol
 $menus = [
     1 => [ // Administrador
-        "Cliente" => "../Home/inicio.php",
+        "Cliente" => [
+            "Catalogo" => "../Home/inicio.php",
+        "Pedio" => "../Venta/Detalle_venta.php"
+        ],
         "Usuario" => [
             "Usuario" => "../Usuarios/usuario.php",
             "Registro" => "../Usuarios/Registro/Registro_Usuario.php"
@@ -32,7 +35,10 @@ $menus = [
         "Producción" => "../Produccion/pro.php",
         "Productor" => "../Produccion/productor.php"
     ]],
-    2 => ["Cliente"], // Cliente (Sin menú)
+    2 => ["Catalogo" => [
+        "Catalogo" => "../Home/inicio.php",
+        "Pedio" => "../Venta/Detalle_venta.php"
+    ]],
     3 => ["Proveedor" => "../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
         "Solicitar" => "../Compras/Solicitar/Solicitar_Compra.php",
@@ -66,7 +72,8 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../CSS/departamentos.css" type="text/css">
     <link rel="stylesheet" href="../CSS/cabecera2.css" type="text/css">
     <link rel="stylesheet" href="../CSS/Detalle_Producto.css" type="text/css">
-    <link rel="stylesheet" href="../CSS/eliminar.css" type="text/css">
+
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     
 </head>

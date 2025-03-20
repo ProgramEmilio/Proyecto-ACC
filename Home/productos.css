@@ -31,6 +31,7 @@ body {
     justify-content: space-between;
     position: relative;
     height: 550px; /* Fijo para alinear todo */
+    margin-top: 70px;
 }
 
 .product-name {

@@ -71,7 +71,7 @@ $resultPedidos = mysqli_stmt_get_result($stmtPedidos);
             <h2>Pedido ID: <?php echo htmlspecialchars($pedido['id_pedido']); ?></h2>
 
             <div class="product-details">
-                <div class="product-image">
+                <div class="product-image-venta">
                     <img src="../Imagenes/<?php echo htmlspecialchars($producto['imagen']); ?>" alt="Producto">
                 </div>
 

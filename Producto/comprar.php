@@ -41,6 +41,7 @@ if ($result->num_rows > 0) {
 $stmt->close();
 
 // Fecha actual
+date_default_timezone_set('America/Mazatlan');
 $fecha_registro = date('Y-m-d H:i:s');
 
 // Insertar el pedido en la tabla 'pedido'
@@ -55,6 +56,18 @@ $sql_insert_producto = "INSERT INTO producto (id_pedido, id_articulo, id_cliente
                         VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql_insert_producto);
 $stmt->bind_param("siisiss", $id_pedido, $id_articulo, $id_usuario, $articulo['nombre_articulo'], $cantidad, $personalizacion, $fecha_registro);
+$stmt->execute();
+$stmt->close();
+
+// Generar un ID aleatorio para id_pedido_bitacora
+$id_pedido_bitacora = rand(100000, 999999); // Asegúrate de que este rango no cause conflictos con los IDs existentes
+
+// Insertar el producto asociado al pedido en la tabla 'pedido_bitacora'
+$sql_insert_pedido_bitacora = "INSERT INTO pedido_bitacora (id_pedido_bitacora, id_pedido, id_usuario, estatus_pedido, fecha_registro) 
+                               VALUES (?, ?, ?, ?, ?)";
+$stmt = $conn->prepare($sql_insert_pedido_bitacora); // Usamos el nombre correcto de la variable SQL
+$stmt->bind_param("issss", $id_pedido_bitacora, $id_pedido, $id_usuario, $estatus_pedido, $fecha_registro); // Aseguramos que los tipos coincidan
+$estatus_pedido = 'Generado'; // Asignar valor 'Generado' al estatus
 $stmt->execute();
 $stmt->close();
 

@@ -41,6 +41,7 @@ if ($result->num_rows > 0) {
 $stmt->close();
 
 // Fecha actual
+date_default_timezone_set('America/Mazatlan');
 $fecha_registro = date('Y-m-d H:i:s');
 
 // Insertar el pedido en la tabla 'pedido'

@@ -63,8 +63,12 @@ if (isset($_POST['validar'])) {
 
 // Procesar pedido y actualizar base de datos al hacer clic en "Procesar Pedido"
 if (isset($_POST['procesar'])) {
-    $cantidad_articulo = $_POST['cantidad_articulo']; // Esto captura las cantidades del formulario
+    $cantidad_articulo = $_POST['cantidad_articulo']; // Captura las cantidades del formulario
     $id_productor = $_POST['id_productor'];
+    $id_usuario = $_SESSION['id_usuario']; // Captura el ID del usuario que procesa el pedido
+
+    date_default_timezone_set('America/Mazatlan'); // Configura la zona horaria de Culiacán, Sinaloa
+    $fecha_registro = date('Y-m-d H:i:s'); // Obtiene la fecha y hora actual
 
     // Actualizar el estado del pedido
     $query_actualizar_estado = "UPDATE pedido SET estatus = 'En preparación' WHERE id_pedido = '$id_pedido'";
@@ -88,7 +92,6 @@ if (isset($_POST['procesar'])) {
 
             // Verificar que hay suficientes existencias
             if ($cantidad > $articulo['existencias']) {
-                // Si no hay suficientes existencias, mostrar un mensaje de error
                 $mensaje = "No hay suficientes existencias para el artículo: " . $articulo['nombre_articulo'];
                 break;
             }
@@ -101,7 +104,6 @@ if (isset($_POST['procesar'])) {
             }
 
             // Insertar en la tabla producto_consumibles
-            // Relacionar los artículos consumibles con el producto terminado
             $query_insertar_producto_consumible = "INSERT INTO producto_consumibles (id_articulo, id_producto_t) 
                                                     VALUES ('$id_articulo', '$id_producto')";
             if (!mysqli_query($conn, $query_insertar_producto_consumible)) {
@@ -110,11 +112,28 @@ if (isset($_POST['procesar'])) {
         }
     }
 
+    // Generar un ID aleatorio para id_pedido_bitacora
+    $id_pedido_bitacora = rand(100000, 999999);
+    $estatus_pedido = 'En preparación';
+    // Fecha actual
+    $fecha_registro = date('Y-m-d H:i:s');
+
+    // Insertar en la tabla pedido_bitacora
+    $sql_insert_pedido_bitacora = "INSERT INTO pedido_bitacora (id_pedido_bitacora, id_pedido, id_usuario, estatus_pedido, fecha_registro) 
+                                   VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql_insert_pedido_bitacora);
+    $stmt->bind_param("issss", $id_pedido_bitacora, $id_pedido, $id_usuario, $estatus_pedido, $fecha_registro);
+    if (!$stmt->execute()) {
+        die('Error al insertar en pedido_bitacora: ' . $stmt->error);
+    }
+    $stmt->close();
+
     // Mensaje de éxito
     if (empty($mensaje)) {
-        $mensaje = "Pedido procesado exitosamente, responsable asignado y existencias actualizadas.";
+        $mensaje = "Pedido procesado exitosamente, responsable asignado, existencias actualizadas y bitácora registrada.";
     }
 }
+
 
 ?>
 <!DOCTYPE html>

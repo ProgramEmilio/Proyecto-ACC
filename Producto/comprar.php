@@ -75,5 +75,5 @@ $stmt->close();
 $conn->close();
 
 // Redirigir al usuario con un mensaje de éxito
-echo "<script>alert('Compra realizada con éxito.'); window.location.href='../Home/inicio.php';</script>";
+header("Location: Compra_realizada.php");
 ?>

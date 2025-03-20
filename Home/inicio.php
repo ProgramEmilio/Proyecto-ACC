@@ -8,30 +8,32 @@ $sql = "SELECT id_articulo, nombre_articulo, imagen
 $result = $conn->query($sql);
 ?>
 
+<link rel="stylesheet" href="productos.css">
+
 <body>
-    <link rel="stylesheet" href="productos.css">
+    <!-- =================================
+       Productos (Desde la Base de Datos)
+    ================================== -->
 
     <div class="products-container">
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo "<div class='product-card'>"; // Tarjeta completa
-
-                // Nombre del producto ARRIBA
+                echo "<div class='product-card'>";
+                
+                // Nombre del producto
                 echo "<h1 class='product-name'>" . htmlspecialchars($row["nombre_articulo"]) . "</h1>";
 
-                // Imagen en el centro
+                // Imagen del producto
                 echo "<div class='product-image'>";
                 $imagen = !empty($row["imagen"]) ? $row["imagen"] : "default.jpg";
                 echo "<img src='../Imagenes/" . htmlspecialchars($imagen) . "' alt='Producto'>";
                 echo "</div>";
 
-                // Botón ABAJO
-                echo "<div class='product-info'>";
+                // Botón Ver más
                 echo "<a href='../Producto/Detalle.php?id_articulo=" . $row["id_articulo"] . "' class='view-more'>Ver más</a>";
-                echo "</div>";
 
-                echo "</div>"; // Cierre product-card
+                echo "</div>";
             }
         } else {
             echo "<p>No se encontraron productos.</p>";
@@ -42,8 +44,7 @@ $result = $conn->query($sql);
 </body>
 
 <?php
-$conn->close(); // Cierra conexión
+$conn->close();
 include('../Nav/footer.php');
 ?>
-
 </html>

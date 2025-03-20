@@ -143,7 +143,13 @@ CONSTRAINT fk_id_pedido_dis FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido)
 CONSTRAINT fk_id_persona_dis FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)
 );
 
-
+create table comentarios_cliente(
+id_comentario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+id_producto INT NOT NULL,
+calificacion INT NOT NULL,
+comentario TEXT NOT NULL,
+CONSTRAINT fk_id_produc_satis FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+);
 -- ALTER TABLE Pedido ADD fecha_entrega DATETIME NOT NULL;
 
 INSERT INTO roles VALUES

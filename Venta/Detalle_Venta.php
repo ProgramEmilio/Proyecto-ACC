@@ -88,7 +88,7 @@ $resultPedidos = mysqli_stmt_get_result($stmtPedidos);
                 
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <a href="encuesta.php?id_pedido=<?php echo $producto['id_producto']; ?>" 
+                <a href="../Home/encuesta.php?id_producto=<?php echo $producto['id_producto']; ?>" 
                 style="display: inline-block; padding: 10px 20px; margin: 10px; background-color:rgb(36, 176, 73); color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
                 Encuesta de Satisfacción
                 </a>

@@ -54,7 +54,7 @@ if ($stmt->execute()) {
     }
     $stmt_insert->close();
     
-    header("Location: detalle.php?id_producto=$id_producto");
+    header("Location: Detalle_Venta.php?id_producto=$id_producto");
 } else {
     echo "<p>Error al actualizar el estatus: " . $stmt->error . "</p>";
 }

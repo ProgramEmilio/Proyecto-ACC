@@ -20,7 +20,7 @@ $sql = "INSERT INTO persona (id_usuario, nom_persona, apellido_paterno, apellido
 VALUES ('$id_usuario', '$nom_persona', '$apellido_paterno', '$apellido_materno', '$rfc', '$codigo_postal', '$calle', '$num_int', '$num_ext', '$colonia', '$ciudad', '$telefono')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "¡Datos personales guardados exitosamente!";
+    header("Location: inicio.php");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

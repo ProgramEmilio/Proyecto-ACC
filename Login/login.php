@@ -31,7 +31,7 @@
                     <label for="password">Contraseña</label>
                 </div>
                 <button type="submit" class="login-button">Ingresar</button>
-                <p class="register-link">¿No tienes cuenta? <a href="registro.php">Regístrate</a></p>
+                <p class="register-link">¿No tienes cuenta? <a href="../Registro/registro.php">Regístrate</a></p>
             </form>
 
         </div>

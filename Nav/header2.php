@@ -12,7 +12,10 @@ $id_rol = $_SESSION['id_rol'];
 $menus = [
     1 => [ // Administrador
         "Cliente" => "../../Home/inicio.php",
-        "Usuario" => "../../Usuarios/Usuario.php",
+        "Usuario" => [
+            "Usuario" => "../../Usuarios/usuario.php",
+            "Registro" => "../../Usuarios/Registro/Registro_Usuario.php"
+        ],
         "Proveedor" => "../../Compras/Cotizacion/Cotizar.php",
         "Ventas" => "../../Venta/Detalle_venta.php",
         "Compras" => [
@@ -56,6 +59,7 @@ include('CerrarSesion.php');
     <link rel="stylesheet" href="../../CSS/cabecera2.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/Detalle_Producto.css" type="text/css">
     <link rel="stylesheet" href="../../CSS/eliminar.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 <body>

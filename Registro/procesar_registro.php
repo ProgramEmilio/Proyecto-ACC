@@ -1,15 +1,6 @@
 <?php
 include('../BD/ConexionBD.php');
 
-$_servername='localhost:3306';
-$database='ACC';
-$username='root';
-$password='';
-//create connection
-$conexion=mysqli_connect($_servername,$username,$password,$database);
-if ($conexion->connect_error) {
-    die("Error en la conexión: " . $conexion->connect_error);
-}
 
 // Recibir datos del formulario
 $nombre_usuario = $_POST['nombre_usuario'];
@@ -21,16 +12,16 @@ $id_rol = 2; // Valor por default
 $sql = "INSERT INTO usuario (nombre_usuario, correo, contraseña, id_rol)
         VALUES ('$nombre_usuario', '$correo', '$contraseña', $id_rol)";
 
-if ($conexion->query($sql) === TRUE) {
+if ($conn->query($sql) === TRUE) {
     // Obtener el id_usuario recién insertado
-    $id_usuario = $conexion->insert_id;
+    $id_usuario = $conn->insert_id;
 
     // Redirigir al formulario persona y enviar el id_usuario
     header("Location: persona.php?id_usuario=$id_usuario");
     exit();
 } else {
-    echo "Error: " . $sql . "<br>" . $conexion->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conexion->close();
+$conn->close();
 ?>

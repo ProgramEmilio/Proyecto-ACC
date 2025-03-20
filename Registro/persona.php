@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Datos Personales</title>
-    <link rel="stylesheet" href="registro.css"> <!-- reutilizamos estilos -->
+    <link rel="stylesheet" href="registro.css"> 
+
 </head>
 <body>
 
     <div class="register-container">
+    <div class="login-box">
         <div class="register-box">
             <h2>Datos Personales</h2>
-            <p class="subtitle">Completa tu información</p>
+            <strong><h2 class="subtitle">Completa tu información</h2></strong>
 
             <form action="procesar_persona.php" method="POST">
 
@@ -77,6 +79,6 @@
             </form>
         </div>
     </div>
-
+    </div>
 </body>
 </html>

@@ -30,7 +30,7 @@
 
 /* Contenedor flexible para imagen e información */
 .product-details {
-    display: flex;
+    display: inline-block;
     align-items: center;
     gap: 30px;
     justify-content: center;
@@ -38,15 +38,15 @@
 
 /* Estilo de la imagen */
 .product-image img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 400px;
     border-radius: 10px;
     object-fit: cover;
 }
 
 /* Información del producto */
 .product-info {
-    flex: 1;
+    flex: 90;
     text-align: left;
 }
 
@@ -64,7 +64,7 @@
 
     .product-image img {
         width: 100%;
-        max-width: 300px;
+        max-width: 200px;
         height: auto;
     }
 

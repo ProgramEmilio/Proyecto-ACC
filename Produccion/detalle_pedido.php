@@ -21,7 +21,7 @@ $query_productos = "SELECT pro.id_producto, pro.id_pedido, pro.id_articulo, pro.
 $result_productos = mysqli_query($conn, $query_productos);
 
 // Recuperar artículos disponibles
-$query_articulos = "SELECT * FROM articulos";
+$query_articulos = "SELECT * FROM articulos WHERE categoria = 'Insumo'";
 $result_articulos = mysqli_query($conn, $query_articulos);
 
 // Recuperar responsables (usuarios con rol de producción)

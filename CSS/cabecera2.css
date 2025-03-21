@@ -129,7 +129,8 @@ th, td {
 .estatus-a-enviar { background-color: #FFEB3B; }
 .estatus-en-distribucion { background-color: #4CAF50; }
 .estatus-en-camino { background-color: #2196F3; }
-.estatus-entregado { background-color: #F44336; }
+.estatus-entregado { background-color: #e0620d; }
+.estatus-devolucion { background-color: #DC3545; }
 
 @media (max-width: 768px) {
     .estatus {

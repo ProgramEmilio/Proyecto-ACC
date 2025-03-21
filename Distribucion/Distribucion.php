@@ -30,7 +30,7 @@ $rol_usuario = $_SESSION['id_rol'];
          FROM producto pro
          JOIN pedido pedi ON pedi.id_pedido = pro.id_pedido
          LEFT JOIN persona p ON p.id_persona = pro.id_cliente
-         WHERE pedi.estatus IN ('A enviar', 'En distribucion', 'En camino', 'Entregado')";
+         WHERE pedi.estatus IN ('A enviar', 'En distribucion', 'En camino', 'Entregado','Devolucion')";
 
     $result = $conn->query($sql);
 
@@ -71,6 +71,9 @@ $rol_usuario = $_SESSION['id_rol'];
                     break;
                 case 'Entregado':
                     $estatus_class = 'estatus-entregado';
+                    break;
+                case 'Devolucion':
+                    $estatus_class = 'estatus-devolucion';
                     break;
                 default:
                     $estatus_class = 'estatus-generado'; // Default

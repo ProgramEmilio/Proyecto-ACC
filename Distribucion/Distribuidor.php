@@ -58,6 +58,10 @@ $id_distribuidor_usuario = $_SESSION['id_usuario'];
             background-color: #F44336; /* Rojo */
         }
 
+        .estatus-Devolucion {
+            background-color: #DC3545; /* Rojo oscuro */
+        }
+
         /* Ajuste responsivo */
         @media (max-width: 768px) {
             .estatus {
@@ -96,14 +100,7 @@ $id_distribuidor_usuario = $_SESSION['id_usuario'];
 
     <?php
     // Consulta SQL para obtener los productos y su información
-    $sql = "SELECT pro.id_producto, pro.nombre_producto, pro.descripcion, 
-            pro.precio_unitario, pro.impuestos, pro.cantidad, pro.fecha,
-            pedi.id_pedido, p.nom_persona AS nombre_cliente,p.apellido_paterno AS ap_p, p.apellido_materno as ap_m,
-            pedi.fecha_registro AS fecha_registro, pedi.estatus
-            FROM producto pro
-            JOIN pedido pedi ON pedi.id_pedido = pro.id_pedido
-            LEFT JOIN persona p ON p.id_persona = pro.id_cliente
-            WHERE pedi.estatus = 'A enviar' OR pedi.estatus = 'En distribucion' OR pedi.estatus = 'En camino' OR pedi.estatus = 'Entregado'";
+    $sql = "SELECT pro.id_producto, pro.nombre_producto, pro.cantidad, pro.fecha, pedi.id_pedido, p.nom_persona AS nombre_cliente,p.apellido_paterno AS ap_p, p.apellido_materno as ap_m, pedi.fecha_registro AS fecha_registro, pedi.estatus FROM producto pro JOIN pedido pedi ON pedi.id_pedido = pro.id_pedido LEFT JOIN persona p ON p.id_persona = pro.id_cliente WHERE pedi.estatus = 'A enviar' OR pedi.estatus = 'En distribucion' OR pedi.estatus = 'En camino' OR pedi.estatus = 'Entregado' OR pedi.estatus = 'Devolucion'";
 
     $result = $conn->query($sql);
 
@@ -146,6 +143,9 @@ $id_distribuidor_usuario = $_SESSION['id_usuario'];
                     break;
                 case 'Entregado':
                     $estatus_class = 'estatus-entregado';
+                    break;
+                case 'devolucion':
+                    $estatus_class = 'estatus-devolucion'; // Asegúrate de que esta clase esté correcta
                     break;
                 default:
                     $estatus_class = 'estatus-generado'; // Default

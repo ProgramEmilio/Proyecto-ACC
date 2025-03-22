@@ -72,10 +72,8 @@ if (!$result) {
         </tbody>
     </table>
 </body>
-    <footer class="pie-pagina">
-        <div class="grupo-2">
-            <small>&copy; 2025 <b>Aplica Central Creativa</b> - Todos los Derechos Reservados.</small>
-        </div>
-    </footer>
+<?php
+include('../Nav/footer.php');
+?>
 
 </html>

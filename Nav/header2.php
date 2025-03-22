@@ -14,7 +14,8 @@ $menus = [
         "Cliente" => "../../Home/inicio.php",
         "Usuario" => [
             "Usuario" => "../../Usuarios/usuario.php",
-            "Registro" => "../../Usuarios/Registro/Registro_Usuario.php"
+            "Registro" => "../../Usuarios/Registro/Registro_Usuario.php",
+            "Comentarios" => "../../Home/comentarios.php"
         ],
         "Proveedor" => "../../Compras/Cotizacion/Cotizar.php",
         "Ventas" => [

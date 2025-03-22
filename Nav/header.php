@@ -13,7 +13,8 @@ $menus = [
     1 => [ // Administrador
         "Cliente" => [
             "Catalogo" => "../Home/inicio.php",
-        "Pedio" => "../Venta/Detalle_venta.php"
+        "Pedio" => "../Venta/Detalle_venta.php",
+        "Comentarios" => "../Home/comentarios.php"
         ],
         "Usuario" => [
             "Usuario" => "../Usuarios/usuario.php",

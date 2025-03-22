@@ -46,15 +46,15 @@ $menus = [
         "Historial" => "../Compras/Reporte/Reporte_Compras.php"
     ]],
     5 => ["Ventas" => [
-        "Detalle" => "../../Venta/Detalle_venta.php",
-        "Bitacora" => "../../Venta/Bitacora.php"
+        "Detalle" => "../Venta/Detalle_venta.php",
+        "Bitacora" => "../Venta/Bitacora.php"
         ]],
     6 => ["Producción" => [
         "Producción" => "../Produccion/pro.php",
         "Productor" => "../Produccion/productor.php",
     ]], 
     7 => ["Distribución" => "../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
-    8 => ["../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
+    8 => ["Inventario" => "#"] // Responsable stock solo ve inventario
 ];
 include('CerrarSesion.php');
 ?>

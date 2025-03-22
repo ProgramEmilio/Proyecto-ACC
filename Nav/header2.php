@@ -39,7 +39,7 @@ $menus = [
     3 => ["Proveedor" => "../../../Compras/Cotizacion/Cotizar.php"],
     4 => ["Compras" => [
         "Solicitar" => "../../Compras/Solicitar/Solicitar_Compra.php",
-        "Aprobar" => "../../../Compras/Aprobar/Aprobar_Compra.php",
+        "Aprobar" => "../../Compras/Aprobar/Aprobar_Compra.php",
         "Historial" => "../../Compras/Reporte/Reporte_Compras.php"
     ]],
     5 => ["Ventas" => [
@@ -51,7 +51,7 @@ $menus = [
         "Productor" => "../../Produccion/productor.php",
     ]], 
     7 => ["Distribución" => "../../Distribucion/Distribucion.php"], // Distribuidor solo ve distribución
-    8 => ["../../Inventario/Inventario.php" => "#"] // Responsable stock solo ve inventario
+    8 => ["Inventario" => "#"] // Responsable stock solo ve inventario
 ];
 include('CerrarSesion.php');
 ?>

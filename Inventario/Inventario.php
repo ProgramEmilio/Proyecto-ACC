@@ -26,7 +26,7 @@ include('../Nav/header.php');
         <tbody>
             <?php
             // Consulta SQL para obtener los artículos y su información
-            $sql = "SELECT * FROM articulos";
+            $sql = "SELECT * FROM articulos WHERE categoria = 'Insumo'";
             
             $result = $conn->query($sql);
 
